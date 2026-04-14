@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b301c8f781cd3ec41b0198cfc8c6595c, type: 3}
+  m_Name: Add Modifier
+  m_EditorClassIdentifier: Assembly-CSharp::AddModifier
+  chipName: "\u52A0\u7B97"
+  description: "\u7279\u5B9A\u306E\u9069\u7528\u5148\u306B\u5024\u3092\u52A0\u7B97\u3059\u308B"
+  icon: {fileID: 0}
+  Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
+  resistance: 0.5
+  voltageCost: 2
+  applicableTo: 0
+  addValue: 1
