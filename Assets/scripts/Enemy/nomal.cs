@@ -5,17 +5,8 @@ public class Nomal : Enemy
     private void Update()
     {
         rb.linearVelocity = new Vector2(0, - moveSpeed);
+        removeOffscreen();
     }
-    //public override void TakeDamage(float damage)
-    //{
-    //    // ダメージを受けたとき
-    //    if (isInvincible) return;
-    //    currentHP -= damage;
-    //    if (currentHP <= 0)
-    //    {
-    //        Die();
-    //    }
-    //}
     public virtual void Die()
     {
         Destroy(gameObject);
