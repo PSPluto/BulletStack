@@ -4,13 +4,13 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Enemy : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public MotherBoard player;
 
-
-    public float maxHP = 3;
+    public float maxHP = 6;
     public float currentHP;
     public float moveSpeed = 4;
 
-    public float ScoreValue = 100;
+    public int ScoreValue = 100;
     public float XPValue = 10;
 
     //無敵フラグ
@@ -18,6 +18,11 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+    }
+    public void Initialize()
+    {
+        player = Object.FindAnyObjectByType<MotherBoard>();
         rb = GetComponent<Rigidbody2D>();
         currentHP = maxHP;
     }
@@ -32,13 +37,14 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    public virtual void AddValue(float addScore , float addXP)
+    public virtual void AddValue(int addScore , float addXP)
     {
-        
+        player.currentXP += addXP;
+        player.score += addScore;
     }
     public virtual void Die()
     {
-
+        AddValue(ScoreValue, XPValue);
         Destroy(gameObject);
     }
     public virtual void OnContactWithPlayer()

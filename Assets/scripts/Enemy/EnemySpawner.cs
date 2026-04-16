@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject Enemy1;
+    [SerializeField] GameObject[] enemys;
 
     public void SpawnEnemy()
     {
-        GameObject obj = Instantiate(Enemy1, new Vector3(Random.Range(-2, 3), 10, 0), Quaternion.identity);
+        GameObject obj = Instantiate((enemys[Random.Range(0,enemys.Length)]), new Vector3(Random.Range(-2, 3), 10, 0), Quaternion.identity);
     }
     Coroutine _activeLoop;
     void Start()
@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         int count = 0;
         while (true)
         {
-            if(count >= 200)
+            if(count >= 600)
             {
                 count = 0;
                 SpawnEnemy();

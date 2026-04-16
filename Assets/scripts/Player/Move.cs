@@ -45,6 +45,9 @@ public class Move : MonoBehaviour
 
     IEnumerator TitleLoop()
     {
+        rb.linearVelocity = new Vector2(0, 0);
+        moveX = 0;
+        moveY = 0;
         Vector3 targetPos = new Vector3(0, -4, 0);
 
         while (Vector3.Distance(transform.position, targetPos) > 0.01f)
@@ -79,10 +82,17 @@ public class Move : MonoBehaviour
 
     IEnumerator GameOverLoop()
     {
-        while (true)
+        rb.linearVelocity = new Vector2(0, 0);
+        moveX = 0;
+        moveY = 0;
+        Vector3 targetPos = new Vector3(0, -4, 0);
+
+        while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
-            // ゲームオーバーのループ処理
+            transform.position = Vector3.Lerp(transform.position, targetPos, 0.05f);
+
             yield return null;
         }
+        transform.position = targetPos;
     }
 }

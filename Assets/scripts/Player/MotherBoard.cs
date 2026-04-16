@@ -12,11 +12,19 @@ public class MotherBoard : MonoBehaviour
 
     public float resultVoltage;
     public float resultBaseDamage;
-    public int resultPelletCount;
+    public int   resultPelletCount;
     public float resultBulletSpeed;
     public float resultSkipProbability;
     public float resultModMultiplier;
     public float resultMaxSpreadAngle;
+
+    public float maxHP = 40;
+    public float currentHP;
+
+    public float currentXP;
+    public float levelUpXpValue;
+    public int   currentLevel;
+    public int   score;
 
 
     public float TimeToFire = 0f;
@@ -72,6 +80,7 @@ public class MotherBoard : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
+        Initialize();
         isInGameLoop = true;
         yield break;
     }
@@ -94,8 +103,28 @@ public class MotherBoard : MonoBehaviour
         }    
     }
 
+    public void Initialize()
+    {
+        currentHP = maxHP;
+        currentXP = 0f;
+        currentLevel = 1;
+        levelUpXpValue = 200f;
+        score = 0;
+    }
 
 
+    public void TakeDamage(float damage)
+    {
+        currentHP -= damage;
+        if (currentHP <= 0)
+        {
+            Gameover();
+        }
+    }
+    public void Gameover()
+    {
+        StateManager.ChangeState(2);
+    }
 
 
 
