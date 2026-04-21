@@ -10,7 +10,7 @@ public class SpinShooter : Enemy
     public GameObject bulletPrefab;
     public float rotateSpeed = 90f;    // 1秒あたりの回転角度
     public float shootInterval = 1.5f; // 射撃間隔（秒）
-    public int directions = 8;         // 弾の方向数（8方向）
+    public int directions = 6;         // 弾の方向数（8方向）
     public float bulletSpeed = 4f;
     public float bulletDamage = 2f;
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -7,25 +8,37 @@ using UnityEngine;
 public class SlowDrifter : Enemy
 {
     [Header("SlowDrifter設定")]
-    public float contactDamage = 5f;   // 接触ダメージ量
-    public float damageCooldown = 1f;  // 連続ダメージの間隔（秒）
+    public float contactDamage = 5f;  
+    public float damageCooldown = 1f;
 
     [Header("移動設定")]
-    public float acceleration = 2f;    // 小さいほどゆっくり動き出す
+    public float acceleration = 2f;    
 
     private float damageTimer = 0f;
     private bool canDamage = true;
 
+    public Transform spriteTransform;
+    private float transformDiray = 0.5f;
+
+
+    IEnumerator SpriteAnim()
+    {
+        while (true)
+        {
+            spriteTransform.Rotate(0, 0, 45);
+            yield return new WaitForSeconds(transformDiray);
+        }
+
+    }
     void Start()
     {
         Initialize();
+        StartCoroutine(SpriteAnim());
     }
-
-    void Update()
+        void Update()
     {
         removeOffscreen();
 
-        // ダメージクールダウン管理
         if (!canDamage)
         {
             damageTimer += Time.deltaTime;
@@ -39,7 +52,7 @@ public class SlowDrifter : Enemy
 
     void FixedUpdate()
     {
-        // ゆっくり加速しながら落下
+
         rb.linearVelocity = Vector2.MoveTowards(
             rb.linearVelocity,
             Vector2.down * moveSpeed,
@@ -47,8 +60,6 @@ public class SlowDrifter : Enemy
         );
     }
 
-    // プレイヤーと接触したとき Enemy.cs の OnTriggerEnter2D 等から呼ぶ想定
-    // または OnTriggerEnter2D をここで定義してプレイヤーを直接参照する
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -68,26 +79,18 @@ public class SlowDrifter : Enemy
     private void DealContactDamage(Collider2D other)
     {
         if (!canDamage) return;
-
-        // MotherBoard（プレイヤー本体）がある場合はそちらへダメージ
-        // プレイヤー側にTakeDamageメソッドがあればそちらを呼ぶ
-        // ※MotherBoardの実装に合わせて変更してください
         MotherBoard mb = other.GetComponent<MotherBoard>();
         if (mb != null)
         {
-            // mb.TakeDamage(contactDamage); // MotherBoardにTakeDamageがあれば
-            // 暫定：ScoreやXPには影響なく純粋にダメージのみ
+            mb.TakeDamage(damage);
         }
 
         canDamage = false;
-
-        // Enemy基底クラスのOnContactWithPlayerも呼ぶ
         OnContactWithPlayer();
     }
 
     public override void OnContactWithPlayer()
     {
-        // 追加の接触エフェクトが必要なときはここに書く
         base.OnContactWithPlayer();
     }
 }

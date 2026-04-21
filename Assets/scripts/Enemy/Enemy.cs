@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public int ScoreValue = 100;
     public float XPValue = 10;
 
+    public float damage;
+
     //無敵フラグ
     public bool isInvincible = false;
 
