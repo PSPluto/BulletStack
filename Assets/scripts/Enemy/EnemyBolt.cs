@@ -3,10 +3,21 @@ using UnityEngine;
 
 public class EnemyBolt : MonoBehaviour
 {
-    public float damage = 0f;
-    public float speed = 0f;
+    public float damage;
+    public float speed;
+    public bool isActive;
 
-    public bool isActive = true;
+    // Attractメソッドを追加
+    public void Attract(Vector2 attractPosition, float force)
+    {
+        // Rigidbody2Dがアタッチされている場合のみ処理
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            Vector2 direction = (attractPosition - rb.position).normalized;
+            rb.AddForce(direction * force, ForceMode2D.Force);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

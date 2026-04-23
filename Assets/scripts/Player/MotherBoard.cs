@@ -1,11 +1,13 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public class MotherBoard : MonoBehaviour
 {
     Coroutine _activeLoop;
     public GameObject boltPrefab;
+    public PlayerInventory pInventory;
     public bool canFire = true;
     public List<Modifier> circuit = new List<Modifier>();
     public float mindiray = 0.05f;
@@ -194,7 +196,7 @@ public class MotherBoard : MonoBehaviour
 
         SpawnBolts();
 
-        Debug.Log($"最終：ダメージ={resultBaseDamage}, 電圧={resultVoltage}, 散弾数={resultPelletCount}, 弾速={resultBulletSpeed}, モディファイア適用倍率={resultModMultiplier}, パケットロス確率={resultSkipProbability}, 最大拡散角度={resultMaxSpreadAngle}");
+        //Debug.Log($"最終：ダメージ={resultBaseDamage}, 電圧={resultVoltage}, 散弾数={resultPelletCount}, 弾速={resultBulletSpeed}, モディファイア適用倍率={resultModMultiplier}, パケットロス確率={resultSkipProbability}, 最大拡散角度={resultMaxSpreadAngle}");
 
         canFire = true;
         yield break;
@@ -241,5 +243,17 @@ public class MotherBoard : MonoBehaviour
         {
             display.UpdateDisplay();
         }
+    }
+
+    public void UnEquipItem(int index)
+    {
+        this.circuit.Remove(circuit[index]);
+        pInventory.playerInventry.Add(circuit[index]);
+    }
+
+    //装備順の入れ替え
+    public void SwapItem(int index1 ,int index2)
+    {
+
     }
 }

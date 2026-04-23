@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bolt : MonoBehaviour
@@ -6,38 +5,41 @@ public class Bolt : MonoBehaviour
     public float damage = 0f;
     public float speed = 0f;
 
-    public bool canGiveDamage = true;
+    private Rigidbody2D rb;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Start()
     {
-        switch (other.tag)
-        {
-            case "Enemy":
-                Enemy enemy = other.gameObject.GetComponent<Enemy>();
-                if (canGiveDamage == false) { break; }
-                enemy.TakeDamage(damage);
-                canGiveDamage = false;
-                break;
-            default:
-                break;
-        }
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = transform.up * speed * 4f;
     }
 
     void Update()
     {
-        if (canGiveDamage == true)
-        {
-            if (Mathf.Abs(transform.position.y) > 7 || Mathf.Abs(transform.position.x) > 5)
-            {
-                Destroy(gameObject);
-            }
-            transform.Translate(Vector3.up * speed * 4 * Time.deltaTime);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (IsOutOfBounds()) Destroy(gameObject);
+    }
+
+    bool IsOutOfBounds()
+    {
+        return Mathf.Abs(transform.position.y) > 7f
+            || Mathf.Abs(transform.position.x) > 5f;
+    }
+
+    public void Attract(Vector2 attractPosition, float force)
+    {
+        Vector2 direction = (attractPosition - rb.position).normalized;
+        rb.AddForce(direction * force, ForceMode2D.Force);
+
 
     }
-}
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Enemy")) return;
+
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy == null) return;
+
+        enemy.TakeDamage(damage);
+        Destroy(gameObject);
+    }
+}
