@@ -1,0 +1,10 @@
+diff a/Assets/Fonts/KosugiMaru-Regular SDF.asset b/Assets/Fonts/KosugiMaru-Regular SDF.asset	(rejected hunks)
+@@ -14,5 +14,5 @@
+   serializedVersion: 4
+-  m_Width: 1
+-  m_Height: 1
+-  m_CompleteImageSize: 1
++  m_Width: 1024
++  m_Height: 1024
++  m_CompleteImageSize: 1048576
+   m_MipsStripped: 0
