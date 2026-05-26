@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewordInventrySystem : MonoBehaviour
@@ -20,6 +21,11 @@ public class RewordInventrySystem : MonoBehaviour
 
     public void ClaimReward(int index)
     {
+        if (rewardInventory[index] == null)
+        {
+            Debug.Log("[index]‚ªnull‚Å‚µ‚½");
+            return;
+        }
         pInventry.playerInventry.Add(rewardInventory[index]);
         rewardInventory[index] = null;
         CleanTable();
