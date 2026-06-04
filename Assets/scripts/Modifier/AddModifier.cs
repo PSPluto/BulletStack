@@ -29,7 +29,7 @@ public class AddModifier : Modifier
 
     public void RollRandomStats()
     {
-        //すんごい長いけどやってることは、適用先(applicableTo)をDamage, Voltage, Speedの中からランダムに選んでるだけ。
+        //適用先(applicableTo)をDamage, Voltage, Speedの中からランダムに選んでる
         applicableTo = (ApplicableTo)Random.Range(0, System.Enum.GetValues(typeof(ApplicableTo)).Length);
         switch (applicableTo)
         {

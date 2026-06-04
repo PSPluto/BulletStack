@@ -1,4 +1,6 @@
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class Modifier : ScriptableObject
 {

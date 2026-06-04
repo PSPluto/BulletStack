@@ -112,6 +112,8 @@ public class MotherBoard : MonoBehaviour
         currentLevel = 1;
         levelUpXpValue = 200f;
         score = 0;
+        circuit.Clear();
+
     }
 
 

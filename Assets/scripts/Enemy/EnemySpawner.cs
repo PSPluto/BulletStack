@@ -53,18 +53,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
-        int count = 0;
         while (true)
         {
-            //if(count >= 600)
-            //{
-            //    count = 0;
-            //    SpawnEnemy();
-            //}
-            //else
-            //{
-            //    count += 1;
-            //}
             yield return null;
         }
     }

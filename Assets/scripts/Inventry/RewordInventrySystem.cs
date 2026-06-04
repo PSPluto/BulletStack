@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,17 +7,26 @@ public class RewordInventrySystem : MonoBehaviour
     public Modifier[] rewardInventory = new Modifier[3];
 
     public PlayerInventory pInventry;
+    public int stack = 0;
 
 
     public void NewRewardCreate()
     {
-        CleanTable();
-        for (int i = 0; i < 3; i++)
+        if (rewardInventory[0] != null)
         {
-            rewardInventory[i] = ModifierGenerator.Instance.GenerateRandomModifier();
+            stack += 1;
+            Debug.Log("リワードが取得されていなかったため、リワード待機変数に+1しました");
         }
+        else
+        {
+            CleanTable();
+            for (int i = 0; i < 3; i++)
+            {
+                rewardInventory[i] = ModifierGenerator.Instance.GenerateRandomModifier();
+            }
 
-        Debug.Log("リワードの3枠を更新しました！");
+            Debug.Log("リワードの3枠を更新しました！");
+        }
     }
 
     public void ClaimReward(int index)
@@ -29,14 +39,78 @@ public class RewordInventrySystem : MonoBehaviour
         pInventry.playerInventry.Add(rewardInventory[index]);
         rewardInventory[index] = null;
         CleanTable();
+        if (stack > 0)
+        {
+            stack -= 1;
+            NewRewardCreate();
+        }
     }
 
     public void CleanTable()
     {
         for (int i = 0; i < rewardInventory.Length; i++)
         {
-            if (rewardInventory[i] != null) Destroy(rewardInventory[i]);
+            if (rewardInventory[i] != null)
+            {
+                Destroy(rewardInventory[i]);
+                rewardInventory[i] = null;
+            }
         }
+    }
+    Coroutine _activeLoop;
+    void Start()
+    {
 
+    }
+    void OnEnable()
+    {
+        StateManager.OnStateChanged += StateChanged;
+    }
+    void OnDisable()
+    {
+        StateManager.OnStateChanged -= StateChanged;
+    }
+
+    // state更新のイベントで呼び出される
+    public void StateChanged(int newState)
+    {
+        // 今のループを止める
+        if (_activeLoop != null)
+        {
+            StopCoroutine(_activeLoop);
+            _activeLoop = null;
+        }
+        // 次のループを始める
+        switch (newState)
+        {
+            case 0: _activeLoop = StartCoroutine(TitleLoop()); break;
+            case 1: _activeLoop = StartCoroutine(InGameLoop()); break;
+            case 2: _activeLoop = StartCoroutine(GameOverLoop()); break;
+            default: break;
+        }
+    }
+    IEnumerator TitleLoop()
+    {
+        stack = 0;
+        CleanTable();
+        yield break;
+    }
+
+    IEnumerator InGameLoop()
+    {
+        while (true)
+        {
+            // インゲームのループ処理
+            yield return null;
+        }
+    }
+
+    IEnumerator GameOverLoop()
+    {
+        while (true)
+        {
+            // ゲームオーバーのループ処理
+            yield return null;
+        }
     }
 }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngameManager : MonoBehaviour
+public class InGameManager : MonoBehaviour
 {
-    public int wave;
     Coroutine _activeLoop;
     void Start()
     {
@@ -48,10 +47,9 @@ public class IngameManager : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
-        Initialize();
         while (true)
         {
-            
+            // インゲームのループ処理
             yield return null;
         }
     }
@@ -63,11 +61,5 @@ public class IngameManager : MonoBehaviour
             // ゲームオーバーのループ処理
             yield return null;
         }
-    }
-
-    public void Initialize()
-    {
-        wave = 0;
-
     }
 }

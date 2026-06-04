@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using System.Collections;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Initialize();
+    }
+    private void Update()
+    {
+        removeOffscreen();
     }
     public void Initialize()
     {
@@ -47,7 +53,10 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         AddValue(ScoreValue, XPValue);
+        gameObject.tag = "Untagged";
         Destroy(gameObject);
+        PhaseManager.Instance.PhaseEndCheck();
+        Debug.Log("敵死");
     }
     public virtual void OnContactWithPlayer()
     {
@@ -58,7 +67,57 @@ public class Enemy : MonoBehaviour
     {
         if (transform.position.y <= -6)
         {
+            gameObject.tag = "Untagged";
             Destroy(gameObject);
+            PhaseManager.Instance.PhaseEndCheck();
+        }
+    }
+
+    /// <summary>
+    /// コルーチン
+    /// </summary>
+    Coroutine _activeLoop;
+    void OnEnable()
+    {
+        StateManager.OnStateChanged += StateChanged;
+    }
+    void OnDisable()
+    {
+        StateManager.OnStateChanged -= StateChanged;
+    }
+
+    public void StateChanged(int newState)
+    {
+        if (_activeLoop != null)
+        {
+            StopCoroutine(_activeLoop);
+            _activeLoop = null;
+        }
+        switch (newState)
+        {
+            case 0: _activeLoop = StartCoroutine(TitleLoop()); break;
+            case 1: _activeLoop = StartCoroutine(InGameLoop()); break;
+            case 2: _activeLoop = StartCoroutine(GameOverLoop()); break;
+            default: break;
+        }
+    }
+    IEnumerator TitleLoop()
+    {
+        Destroy(gameObject);
+        yield break;
+    }
+
+    IEnumerator InGameLoop()
+    {
+            yield return null;
+    }
+
+    IEnumerator GameOverLoop()
+    {
+        while (true)
+        {
+            // ゲームオーバーのループ処理
+            yield return null;
         }
     }
 }
