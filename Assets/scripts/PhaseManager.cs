@@ -85,7 +85,6 @@ public class PhaseManager : MonoBehaviour
         if (enemyCount - 0 <= 0)
         {
             Debug.Log("フェーズ終了！");
-            rewordInventrySystem.NewRewardCreate();
             Debug.Log("コルーチン呼び出し");
             StartCoroutine(NextPhaseRoutine());
         }

@@ -59,10 +59,9 @@ public class SpinShooter : Enemy
         if (bulletPrefab == null) return;
 
         float angleStep = 360f / directions;
-
+        ShotSound();
         for (int i = 0; i < directions; i++)
         {
-            // currentAngleを基準にすることで、回転に合わせて弾の向きが変わる
             float angle = currentAngle + angleStep * i;
             Quaternion rotation = Quaternion.Euler(0, 0, angle - 90f);
             GameObject bolt = Instantiate(bulletPrefab, transform.position, rotation);

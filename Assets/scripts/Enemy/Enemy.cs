@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     public float XPValue = 10;
 
     public float damage;
+    [SerializeField]private AudioClip dieSE;
+    [SerializeField]private AudioClip shotSE;
+    [SerializeField]private GameObject dieParticlePrefab;
 
     //無敵フラグ
     public bool isInvincible = false;
@@ -45,18 +48,23 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+
     public virtual void AddValue(int addScore , float addXP)
     {
         player.currentXP += addXP;
         player.score += addScore;
+        player.LevelUpCheck();
     }
     public virtual void Die()
     {
         AddValue(ScoreValue, XPValue);
         gameObject.tag = "Untagged";
+        ParticleManager.Instance.CreateParticle(dieParticlePrefab, this.transform.position, transform.rotation);
         Destroy(gameObject);
         PhaseManager.Instance.PhaseEndCheck();
         Debug.Log("敵死");
+        AudioManager.Instance.Playsound(dieSE);
+
     }
     public virtual void OnContactWithPlayer()
     {
@@ -72,6 +80,11 @@ public class Enemy : MonoBehaviour
             PhaseManager.Instance.PhaseEndCheck();
         }
     }
+    public virtual void ShotSound()
+    {
+        AudioManager.Instance.Playsound(shotSE);
+    }
+
 
     /// <summary>
     /// コルーチン

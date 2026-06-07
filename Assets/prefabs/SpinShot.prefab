@@ -177,6 +177,9 @@ MonoBehaviour:
   ScoreValue: 400
   XPValue: 40
   damage: 0
+  dieSE: {fileID: 8300000, guid: 49e81cbb08dd02242bbad30dc11f61da, type: 3}
+  shotSE: {fileID: 8300000, guid: b8192ef88a6d00548a8ec3a7d9d58b3b, type: 3}
+  dieParticlePrefab: {fileID: 1080897348848481451, guid: 116e52e90a1c7e843a09c013a4717119, type: 3}
   isInvincible: 0
   bulletPrefab: {fileID: 6822836005962780505, guid: 87b442872007c134eab975f34447e5ab, type: 3}
   rotateSpeed: 60

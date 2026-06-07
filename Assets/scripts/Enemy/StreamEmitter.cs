@@ -46,29 +46,26 @@ public class StreamEmitter : Enemy
         }
     }
 
-    /// <summary>
-    /// 現在の状況に合わせて目標速度を更新する
-    /// </summary>
     private void UpdateTargetVelocity()
     {
-        // 1. 射撃中は移動を停止
+        // 射撃中は移動を停止
         if (isShooting)
         {
             targetVelocity = Vector2.zero;
             return;
         }
 
-        // 2. 停止位置より上にいるなら下へ移動
+        // 停止位置より上にいるなら下へ移動
         if (transform.position.y > stopY)
         {
             targetVelocity = Vector2.down * moveSpeed;
             return;
         }
 
-        // 3. 停止位置に到達し、まだ射撃が始まっていない場合
+        // 停止位置に到達し、まだ射撃が始まっていない場合
         targetVelocity = Vector2.zero;
 
-        // 物理的な速度が十分に落ちたら射撃シーケンスを開始
+        // 速度が十分に落ちたら射撃シーケンスを開始
         if (rb.linearVelocity.magnitude < 0.05f)
         {
             StartCoroutine(ShootSequence());
@@ -76,7 +73,7 @@ public class StreamEmitter : Enemy
     }
 
     /// <summary>
-    /// 目標速度に向けて物理速度を滑らかに補間する
+    /// 目標速度にむけて滑らかに補間する
     /// </summary>
     private void ApplySmoothMovement()
     {
@@ -139,8 +136,8 @@ public class StreamEmitter : Enemy
     {
         if (bulletPrefab == null || playerPos == null) return;
 
-        // transform.up が前進方向のとき（弾の向き調整）
         Quaternion rotation = Quaternion.Euler(0, 0, angleDeg - 90f);
+        ShotSound();
         GameObject bolt = Instantiate(bulletPrefab, transform.position, rotation);
 
         EnemyBolt eb = bolt.GetComponent<EnemyBolt>();

@@ -6,6 +6,8 @@ public class Bolt : MonoBehaviour
     public float speed = 0f;
 
     private Rigidbody2D rb;
+    [SerializeField]private GameObject hitParticlePrefab;
+    [SerializeField]private AudioClip hitSE;
 
     void Start()
     {
@@ -40,6 +42,8 @@ public class Bolt : MonoBehaviour
         if (enemy == null) return;
 
         enemy.TakeDamage(damage);
+        ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, (transform.rotation));
+        AudioManager.Instance.Playsound(hitSE);
         Destroy(gameObject);
     }
 }

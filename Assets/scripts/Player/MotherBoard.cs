@@ -5,12 +5,19 @@ using static UnityEditor.Progress;
 
 public class MotherBoard : MonoBehaviour
 {
+    //public static MotherBoard Instance { get; private set; }
+    //void Awake()
+    //{
+    //    Instance = this;
+    //}
+
     Coroutine _activeLoop;
     public GameObject boltPrefab;
     public PlayerInventory pInventory;
     public bool canFire = true;
     public List<Modifier> circuit = new List<Modifier>();
     public float mindiray = 0.05f;
+    [SerializeField]private RewordInventrySystem rewordInventrySystem;
 
     public float resultVoltage;
     public float resultBaseDamage;
@@ -19,14 +26,17 @@ public class MotherBoard : MonoBehaviour
     public float resultSkipProbability;
     public float resultModMultiplier;
     public float resultMaxSpreadAngle;
-
     public float maxHP = 40;
     public float currentHP;
 
+    [SerializeField]private float levelUpXpValueMultiplier = 10f;
+
     public float currentXP;
-    public float levelUpXpValue;
-    public int   currentLevel;
+    private float levelUpXpValue;
+    private int   currentLevel;
     public int   score;
+
+    private AudioClip lvUpSE;
 
 
     public float TimeToFire = 0f;
@@ -37,11 +47,10 @@ public class MotherBoard : MonoBehaviour
     public List<StatsDisplay> displayList = new List<StatsDisplay>();
 
     public AudioClip shotSound;
-    private AudioSource _audioSource;
+    [SerializeField]private AudioSource _audioSource;
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -110,7 +119,7 @@ public class MotherBoard : MonoBehaviour
         currentHP = maxHP;
         currentXP = 0f;
         currentLevel = 1;
-        levelUpXpValue = 200f;
+        levelUpXpValue = 60f;
         score = 0;
         circuit.Clear();
 
@@ -129,10 +138,17 @@ public class MotherBoard : MonoBehaviour
     {
         StateManager.ChangeState(2);
     }
-
-
-
-
+    public void LevelUpCheck()
+    {
+        if (currentXP >= levelUpXpValue)
+        {
+            currentLevel++;
+            currentXP -= levelUpXpValue;
+            levelUpXpValue += levelUpXpValueMultiplier * currentLevel;
+            rewordInventrySystem.NewRewardCreate();
+            AudioManager.Instance.Playsound(lvUpSE);
+        }
+    }
 
 
     public void Fire()

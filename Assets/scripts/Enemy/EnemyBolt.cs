@@ -6,11 +6,11 @@ public class EnemyBolt : MonoBehaviour
     public float damage;
     public float speed;
     public bool isActive;
+    [SerializeField]private AudioClip hitSE;
+    [SerializeField]private GameObject hitParticlePrefab;
 
-    // Attractメソッドを追加
     public void Attract(Vector2 attractPosition, float force)
     {
-        // Rigidbody2Dがアタッチされている場合のみ処理
         var rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -27,6 +27,8 @@ public class EnemyBolt : MonoBehaviour
                 MotherBoard enemy = other.gameObject.GetComponent<MotherBoard>();
                 if (isActive == false) { break; }
                 enemy.TakeDamage(damage);
+                ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, Quaternion.Inverse(transform.rotation));
+                AudioManager.Instance.Playsound(hitSE);
                 isActive = false;
                 break;
             default:

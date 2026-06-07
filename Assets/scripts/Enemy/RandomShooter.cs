@@ -98,6 +98,7 @@ public class RandomShooter : Enemy
         if (bulletPrefab == null) return;
 
         Quaternion rotation = Quaternion.Euler(0, 0, angleDeg - 90f);
+        ShotSound();
         GameObject bolt = Instantiate(bulletPrefab, transform.position, rotation);
 
         EnemyBolt eb = bolt.GetComponent<EnemyBolt>();
