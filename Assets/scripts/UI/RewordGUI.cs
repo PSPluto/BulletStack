@@ -1,8 +1,9 @@
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class RewordGUI : MonoBehaviour
+public class RewordGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public RewordInventrySystem ris;
     [SerializeField] private int index;
@@ -23,5 +24,15 @@ public class RewordGUI : MonoBehaviour
             image.sprite = null;
             image.color = Color.white;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // 必要に応じて処理を追加
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // 必要に応じて処理を追加
     }
 }

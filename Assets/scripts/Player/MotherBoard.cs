@@ -18,6 +18,7 @@ public class MotherBoard : MonoBehaviour
     public List<Modifier> circuit = new List<Modifier>();
     public float mindiray = 0.05f;
     [SerializeField]private RewordInventrySystem rewordInventrySystem;
+    [SerializeField]private ShakeSystem Camera;
 
     public float resultVoltage;
     public float resultBaseDamage;
@@ -128,6 +129,7 @@ public class MotherBoard : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Camera.Shake(0.5f, 0.05f);
         currentHP -= damage;
         if (currentHP <= 0)
         {

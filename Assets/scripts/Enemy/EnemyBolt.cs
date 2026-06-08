@@ -24,9 +24,9 @@ public class EnemyBolt : MonoBehaviour
         switch (other.tag)
         {
             case "Player":
-                MotherBoard enemy = other.gameObject.GetComponent<MotherBoard>();
+                MotherBoard player = other.gameObject.GetComponent<MotherBoard>();
                 if (isActive == false) { break; }
-                enemy.TakeDamage(damage);
+                player.TakeDamage(damage);
                 ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, Quaternion.Inverse(transform.rotation));
                 AudioManager.Instance.Playsound(hitSE);
                 isActive = false;
