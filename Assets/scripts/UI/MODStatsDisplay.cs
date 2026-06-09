@@ -1,11 +1,19 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 // 1. 新しいInput Systemのネームスペースを追加
 using UnityEngine.InputSystem;
+using static AddModifier;
 
 public class MODStatsDisplay : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
+    [SerializeField] private TextMeshProUGUI descText;
+    [SerializeField] private TextMeshProUGUI resistanceText;
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI applicableTo;
+    [SerializeField] private TextMeshProUGUI valueText;
 
     void Start()
     {
@@ -31,5 +39,26 @@ public class MODStatsDisplay : MonoBehaviour
         {
             rectTransform.anchoredPosition = localPoint + (new Vector2(10,-10));
         }
+    }
+    public void UpdateUI(string name = null, string desc = null, float? resistance = null, float? cost = null, ApplicableTo? to = null, float? value = null) {
+        if (name == null) {
+            rectTransform.localScale = Vector3.zero;
+        return;
+        }
+        rectTransform.localScale = new Vector3(1, 1, 1);
+        descText.text = desc;
+        resistanceText.text = $"抵抗：{resistance}";
+        costText.text = $"使用電力：{cost}";
+        if (to != null)
+        {
+            applicableTo.text = $"適用先：{to}";
+            valueText.text = $"加算量：{value}";
+        }
+        else
+        {
+            applicableTo.text = "---";
+            valueText.text = "---";
+        }
+    
     }
 }

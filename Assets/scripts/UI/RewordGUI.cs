@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class RewordGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public RewordInventrySystem ris;
+    [SerializeField] private MODStatsDisplay modDisplay;
     [SerializeField] private int index;
     [SerializeField] private SVGImage image;
     private void Start()
@@ -28,11 +29,17 @@ public class RewordGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 必要に応じて処理を追加
+        var rewordIndex = ris.rewardInventory[index];
+        if (ris.rewardInventory[index] != null)
+        {
+            var addMod = rewordIndex as AddModifier;
+            modDisplay.UpdateUI(rewordIndex.name, rewordIndex.description, rewordIndex.resistance, rewordIndex.voltageCost, addMod?.applicableTo, addMod?.addValue);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // 必要に応じて処理を追加
+        modDisplay.UpdateUI();
     }
+    
 }
