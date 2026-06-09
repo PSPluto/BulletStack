@@ -46,7 +46,7 @@ public class SpinShooter : Enemy
 
     void FixedUpdate()
     {
-        // ゆっくり一定速度で落下（加速なし・シンプル）
+
         rb.linearVelocity = Vector2.MoveTowards(
             rb.linearVelocity,
             Vector2.down * moveSpeed,

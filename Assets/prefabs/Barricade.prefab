@@ -141,6 +141,9 @@ MonoBehaviour:
   ScoreValue: 100
   XPValue: 10
   damage: 5
+  dieSE: {fileID: 0}
+  shotSE: {fileID: 0}
+  dieParticlePrefab: {fileID: 0}
   isInvincible: 1
   contactDamage: 5
   damageCooldown: 1

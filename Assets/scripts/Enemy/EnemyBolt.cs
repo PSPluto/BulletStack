@@ -28,7 +28,7 @@ public class EnemyBolt : MonoBehaviour
                 if (isActive == false) { break; }
                 player.TakeDamage(damage);
                 ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, Quaternion.Inverse(transform.rotation));
-                AudioManager.Instance.Playsound(hitSE);
+                //AudioManager.Instance.Playsound(hitSE);
                 isActive = false;
                 break;
             default:

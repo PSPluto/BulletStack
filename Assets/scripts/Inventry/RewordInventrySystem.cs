@@ -7,6 +7,7 @@ public class RewordInventrySystem : MonoBehaviour
     public Modifier[] rewardInventory = new Modifier[3];
 
     public PlayerInventory pInventry;
+    public MotherBoard motherBoard;
     public int stack = 0;
 
 
@@ -29,14 +30,21 @@ public class RewordInventrySystem : MonoBehaviour
         }
     }
 
-    public void ClaimReward(int index)
+    public void ClaimReward(int index ,bool shouldEquip=false)
     {
         if (rewardInventory[index] == null)
         {
             Debug.Log("[index]‚ªnull‚Å‚µ‚½");
             return;
         }
-        pInventry.playerInventry.Add(rewardInventory[index]);
+        if (shouldEquip)
+        {
+            motherBoard.circuit.Add(rewardInventory[index]);
+        }
+        else
+        {
+            pInventry.playerInventry.Add(rewardInventory[index]);
+        }
         rewardInventory[index] = null;
         CleanTable();
         if (stack > 0)

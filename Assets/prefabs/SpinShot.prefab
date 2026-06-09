@@ -180,6 +180,7 @@ MonoBehaviour:
   dieSE: {fileID: 8300000, guid: 49e81cbb08dd02242bbad30dc11f61da, type: 3}
   shotSE: {fileID: 8300000, guid: b8192ef88a6d00548a8ec3a7d9d58b3b, type: 3}
   dieParticlePrefab: {fileID: 1080897348848481451, guid: 116e52e90a1c7e843a09c013a4717119, type: 3}
+  shakeSystem: {fileID: 5833981748602568059}
   isInvincible: 0
   bulletPrefab: {fileID: 6822836005962780505, guid: 87b442872007c134eab975f34447e5ab, type: 3}
   rotateSpeed: 60
@@ -259,8 +260,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -3888481672020999207, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5833981748602568059}
   m_SourcePrefab: {fileID: 7243324766535440047, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}
+--- !u!1 &4683477789923816053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3888481672020999207, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}
+  m_PrefabInstance: {fileID: 789916336951488940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5833981748602568059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683477789923816053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be491b9e841a3d04a91f80e09e8cb172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeSystem
 --- !u!4 &8333318224077184591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8742538545776668643, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}

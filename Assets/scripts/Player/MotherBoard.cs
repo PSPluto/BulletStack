@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -16,39 +17,41 @@ public class MotherBoard : MonoBehaviour
     public PlayerInventory pInventory;
     public bool canFire = true;
     public List<Modifier> circuit = new List<Modifier>();
-    public float mindiray = 0.05f;
     [SerializeField]private RewordInventrySystem rewordInventrySystem;
     [SerializeField]private ShakeSystem Camera;
 
-    public float resultVoltage;
-    public float resultBaseDamage;
-    public int   resultPelletCount;
-    public float resultBulletSpeed;
-    public float resultSkipProbability;
-    public float resultModMultiplier;
-    public float resultMaxSpreadAngle;
+    [HideInInspector] public float resultVoltage;
+    [HideInInspector]public float resultBaseDamage;
+    [HideInInspector]public int   resultPelletCount;
+    [HideInInspector]public float resultBulletSpeed;
+    [HideInInspector]public float resultSkipProbability;
+    [HideInInspector]public float resultModMultiplier;
+    [HideInInspector]public float resultMaxSpreadAngle;
+    [HideInInspector]public float resultMinInterval;
+    [SerializeField]private AudioClip damageSE;
     public float maxHP = 40;
     public float currentHP;
 
     [SerializeField]private float levelUpXpValueMultiplier = 10f;
 
     public float currentXP;
-    private float levelUpXpValue;
-    private int   currentLevel;
+    public float levelUpXpValue;
+    public int   currentLevel;
     public int   score;
 
-    private AudioClip lvUpSE;
+    [SerializeField]private AudioClip lvUpSE;
 
 
-    public float TimeToFire = 0f;
-    public float resultTimeToFire = 0f;
+    [HideInInspector]public float TimeToFire = 0f;
+    [HideInInspector]public float resultTimeToFire = 0f;
 
-    public bool isInGameLoop = false;
+    [HideInInspector]public bool isInGameLoop = false;
 
     public List<StatsDisplay> displayList = new List<StatsDisplay>();
 
     public AudioClip shotSound;
     [SerializeField]private AudioSource _audioSource;
+    [SerializeField]private AudioClip overSound;
 
     void Start()
     {
@@ -135,6 +138,7 @@ public class MotherBoard : MonoBehaviour
         {
             Gameover();
         }
+        AudioManager.Instance.Playsound(damageSE);
     }
     public void Gameover()
     {
@@ -179,7 +183,8 @@ public class MotherBoard : MonoBehaviour
             bulletSpeed: 6f,
             modMultiplier: 1f,
             skipProbability: 0f,
-            maxSpreadAngle: 5f
+            maxSpreadAngle: 5f,
+            minFireinterval: 0.2f
         );
 
         List<Modifier> circuitSnapshot = new List<Modifier>(circuit);
@@ -201,17 +206,17 @@ public class MotherBoard : MonoBehaviour
 
             if (s.voltage <= 0)
             {
-                yield return new WaitForSeconds(mindiray);
+                yield return new WaitForSeconds(TimeToFire);
                 SetBreakValues();
                 UpdateDisplays();
+                AudioManager.Instance.Playsound(overSound);
                 canFire = true;
                 yield break;
             }
         }
-        TimeToFire +=(mindiray);
-        yield return new WaitForSeconds(mindiray);
-        
         SetFinalResults(s);
+        TimeToFire += (s.minFireinterval);
+        yield return new WaitForSeconds(s.minFireinterval);
         UpdateDisplays();
 
         SpawnBolts();
@@ -245,6 +250,7 @@ public class MotherBoard : MonoBehaviour
         resultModMultiplier = s.modMultiplier;
         resultMaxSpreadAngle = s.maxSpreadAngle;
         resultTimeToFire = TimeToFire;
+        resultMinInterval = s.minFireinterval;
     }
     private void SetBreakValues()
     {
@@ -256,6 +262,7 @@ public class MotherBoard : MonoBehaviour
         resultModMultiplier = 0;
         resultMaxSpreadAngle = 0;
         resultTimeToFire = TimeToFire;
+        resultMinInterval = 0.2f;
     }
     public void UpdateDisplays()
     {

@@ -11,7 +11,6 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        EquipItem(0);
     }
     public void EquipItem(int index)
     {

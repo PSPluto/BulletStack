@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor.PackageManager.UI;
+using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
-using System.Collections;
 
 
 public class Enemy : MonoBehaviour
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private AudioClip dieSE;
     [SerializeField]private AudioClip shotSE;
     [SerializeField]private GameObject dieParticlePrefab;
+    [SerializeField]private ShakeSystem shakeSystem;
 
     //無敵フラグ
     public bool isInvincible = false;
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Initialize();
+        //shakeSystem = GetComponentInChildren<ShakeSystem>();
     }
     private void Update()
     {
@@ -43,6 +46,7 @@ public class Enemy : MonoBehaviour
         // ダメージを受けたとき
         if (isInvincible == true) return;
         currentHP -= damage;
+        //shakeSystem.Shake(0.2f, 0.05f);
         if (currentHP <= 0)
         {
             Die();

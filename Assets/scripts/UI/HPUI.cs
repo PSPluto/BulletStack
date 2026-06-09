@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class HPUI : MonoBehaviour
 {
     public MotherBoard player;
+    [HideInInspector] public float fAmount;
     [SerializeField] Image hpBarImage;
     public float lastHP = -1f;
 
@@ -11,7 +12,8 @@ public class HPUI : MonoBehaviour
     {
         if (player.currentHP == lastHP) return;
         float mappingHP = player.currentHP / player.maxHP;
-        hpBarImage.fillAmount = Mathf.Lerp(0.14f, 0.93f, mappingHP);
+        fAmount = Mathf.Lerp(0.14f, 0.93f, mappingHP);
+        hpBarImage.fillAmount = fAmount;
         lastHP = player.currentHP;
     }
 }
