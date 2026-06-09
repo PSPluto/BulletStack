@@ -44,6 +44,7 @@ public class Bolt : MonoBehaviour
         enemy.TakeDamage(damage);
         ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, (transform.rotation));
         AudioManager.Instance.Playsound(hitSE);
+        
         Destroy(gameObject);
     }
 }
