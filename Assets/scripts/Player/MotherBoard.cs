@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using static InventoryDisplay;
 using static UnityEditor.Progress;
 
 public class MotherBoard : MonoBehaviour
@@ -128,7 +129,7 @@ public class MotherBoard : MonoBehaviour
         levelUpXpValue = 60f;
         score = 0;
         circuit.Clear();
-
+        equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
     }
 
 
@@ -279,6 +280,7 @@ public class MotherBoard : MonoBehaviour
         pInventory.playerInventry.Add(circuit[index]);
         this.circuit.Remove(circuit[index]);
         EquippedInventoryUpdate();
+        pInventory.EquippedInventoryUpdate();
     }
 
     //装備順の入れ替え
@@ -288,7 +290,7 @@ public class MotherBoard : MonoBehaviour
     }
     public void EquippedInventoryUpdate()
     {
-        equippedInventoryMnager.UpdateList(circuit);
+        equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
     }
 
 

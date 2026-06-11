@@ -2,10 +2,17 @@ using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 {
+    public enum InventoryType
+    {
+        Circuit,
+        Inventory
+    }
     [HideInInspector]public MotherBoard playerScript;
+    [HideInInspector]public PlayerInventory playerInventory;
     public Modifier modData;
 
     [SerializeField]private TMPro.TextMeshProUGUI modNameObj;
@@ -13,16 +20,30 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     [SerializeField]private SVGImage imageObj;
 
     public int thisIndex = 0;
+    public InventoryType inType;
 
     private void Start()
     {
         playerScript = FindAnyObjectByType<MotherBoard>();
+        playerInventory = FindAnyObjectByType<PlayerInventory>();
+        SetList(inType);
     }
-    public void InventoryHUDUpdate()
+    public void SetList(InventoryType type)
     {
-        if (playerScript.circuit.Count >= thisIndex+1)
+        if (type == InventoryType.Circuit)
         {
-            modData = playerScript.circuit[thisIndex];
+            InventoryHUDUpdate(playerScript.circuit);
+        }
+        else if (type == InventoryType.Inventory)
+        {
+            InventoryHUDUpdate(playerInventory.playerInventry);
+        }
+    }
+    public void InventoryHUDUpdate(List<Modifier> modifiers)
+    {
+        if (modifiers.Count >= thisIndex+1)
+        {
+            modData = modifiers[thisIndex];
             modNameObj.text = modData.chipName;
             imageObj.sprite = modData.icon;
             if (modData is AddModifier addModifier)
@@ -35,10 +56,6 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
             }
         }
     }
-    void Update()
-    {
-        InventoryHUDUpdate();
-    }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -47,7 +64,14 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            playerScript.UnEquipItem(thisIndex);
+            if (inType == InventoryType.Circuit)
+            {
+                playerScript.UnEquipItem(thisIndex);
+            }
+            else
+            {
+                playerInventory.EquipItem(thisIndex);
+            }
         }
     }
 

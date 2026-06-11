@@ -45,6 +45,7 @@ public class RewordInventrySystem : MonoBehaviour
         else
         {
             pInventry.playerInventry.Add(rewardInventory[index]);
+            pInventry.EquippedInventoryUpdate();
         }
         rewardInventory[index] = null;
         CleanTable();

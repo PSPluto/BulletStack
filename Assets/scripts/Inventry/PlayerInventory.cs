@@ -2,10 +2,12 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static InventoryDisplay;
 
 public class PlayerInventory : MonoBehaviour
 {
     public MotherBoard motherBoard;
+    public EquippedInventoryMnager equippedInventoryMnager;
 
     public List<Modifier> playerInventry;
 
@@ -22,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
         motherBoard.circuit.Add(playerInventry[index]);
         playerInventry.RemoveAt(index);
         motherBoard.EquippedInventoryUpdate();
+        EquippedInventoryUpdate();
         //playerInventry.Remove(playerInventry[index]);
     }
 
@@ -67,6 +70,10 @@ public class PlayerInventory : MonoBehaviour
     IEnumerator GameOverLoop()
     {
             yield return null;
+    }
+    public void EquippedInventoryUpdate()
+    {
+        equippedInventoryMnager.UpdateList(playerInventry, InventoryType.Inventory);
     }
 }
 
