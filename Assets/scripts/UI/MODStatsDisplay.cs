@@ -22,12 +22,9 @@ public class MODStatsDisplay : MonoBehaviour
 
     void Update()
     {
-        // マウスが存在することを確認
         if (Mouse.current == null) return;
 
         Camera cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
-
-        // 2. Input.mousePosition から Mouse.current.position.ReadValue() に変更
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
         Vector2 localPoint;

@@ -21,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
         }
         motherBoard.circuit.Add(playerInventry[index]);
         playerInventry.RemoveAt(index);
+        motherBoard.EquippedInventoryUpdate();
         //playerInventry.Remove(playerInventry[index]);
     }
 

@@ -40,6 +40,7 @@ public class RewordInventrySystem : MonoBehaviour
         if (shouldEquip)
         {
             motherBoard.circuit.Add(rewardInventory[index]);
+            motherBoard.EquippedInventoryUpdate();
         }
         else
         {

@@ -53,6 +53,8 @@ public class MotherBoard : MonoBehaviour
     [SerializeField]private AudioSource _audioSource;
     [SerializeField]private AudioClip overSound;
 
+    [SerializeField]private EquippedInventoryMnager equippedInventoryMnager;
+
     void Start()
     {
     }
@@ -274,8 +276,9 @@ public class MotherBoard : MonoBehaviour
 
     public void UnEquipItem(int index)
     {
-        this.circuit.Remove(circuit[index]);
         pInventory.playerInventry.Add(circuit[index]);
+        this.circuit.Remove(circuit[index]);
+        EquippedInventoryUpdate();
     }
 
     //装備順の入れ替え
@@ -283,4 +286,10 @@ public class MotherBoard : MonoBehaviour
     {
 
     }
+    public void EquippedInventoryUpdate()
+    {
+        equippedInventoryMnager.UpdateList(circuit);
+    }
+
+
 }
