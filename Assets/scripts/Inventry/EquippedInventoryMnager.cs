@@ -10,6 +10,8 @@ public class EquippedInventoryMnager : MonoBehaviour
     [SerializeField] private GameObject hudObj;
     private HashSet<GameObject> objects = new HashSet<GameObject>();
     private GameObject obj;
+    private int? findex;
+    private bool sisContent;
 
     public void UpdateList( List<Modifier> list, InventoryType invType)
     {
@@ -32,7 +34,39 @@ public class EquippedInventoryMnager : MonoBehaviour
             InventoryDisplay inventoryDisplay = obj.GetComponent<InventoryDisplay>();
             inventoryDisplay.thisIndex = indexBox;
             inventoryDisplay.inType = invType;
+            inventoryDisplay.equippedInventoryMnager = this; 
+            //インデックスと担当するインベントリ、このスクリプトへの参照
+            //が渡される
             objects.Add(obj);
         }
+
+
+    }
+    public void listMovement(int? thisIndex, bool isContent, List<Modifier> modifiers)
+    {
+        if (thisIndex == null)
+        {
+            if (isContent == false)
+            {
+                return;
+            }
+            findex = thisIndex;
+            Modifier = findex;
+            
+        }
+        else
+        {
+            sisContent = isContent;
+            if (isContent)
+            {
+                // 入れ替え
+            }
+            else
+            {
+                // 差し込み
+            }
+        }
+        
+
     }
 }

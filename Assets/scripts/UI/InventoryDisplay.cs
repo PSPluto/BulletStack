@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
 public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 {
@@ -13,11 +14,18 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     }
     [HideInInspector]public MotherBoard playerScript;
     [HideInInspector]public PlayerInventory playerInventory;
+    [HideInInspector]public EquippedInventoryMnager equippedInventoryMnager;
+
+    
     public Modifier modData;
 
     [SerializeField]private TMPro.TextMeshProUGUI modNameObj;
     [SerializeField]private TMPro.TextMeshProUGUI addToObj;
     [SerializeField]private SVGImage imageObj;
+    [HideInInspector]private InventoryType inventoryType;
+
+    public bool isContent;
+
 
     public int thisIndex = 0;
     public InventoryType inType;
@@ -26,10 +34,14 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     {
         playerScript = FindAnyObjectByType<MotherBoard>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
+        if(isContent == false) { 
+            return;
+        }
         SetList(inType);
     }
     public void SetList(InventoryType type)
     {
+        inventoryType = type;
         if (type == InventoryType.Circuit)
         {
             InventoryHUDUpdate(playerScript.circuit);
@@ -41,6 +53,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     }
     public void InventoryHUDUpdate(List<Modifier> modifiers)
     {
+        //Ž©•ª‚ÌindexID‚ð‚Â‚©‚Á‚Äî•ñ‚ðXV
         if (modifiers.Count >= thisIndex+1)
         {
             modData = modifiers[thisIndex];
@@ -60,6 +73,14 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            if (inventoryType == InventoryType.Circuit)
+            {
+                equippedInventoryMnager.listMovement(thisIndex, isContent, playerScript.circuit[thisIndex]);
+            }
+            else if (inventoryType == InventoryType.Inventory)
+            {
+                equippedInventoryMnager.listMovement(thisIndex, isContent);
+            }
             
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
