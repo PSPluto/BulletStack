@@ -1,7 +1,9 @@
 using NUnit.Framework;
+using Shapes2D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static InventoryDisplay;
 
 public class PlayerInventory : MonoBehaviour
@@ -10,7 +12,8 @@ public class PlayerInventory : MonoBehaviour
     public EquippedInventoryMnager equippedInventoryMnager;
 
     public List<Modifier> playerInventry;
-
+    private Image img;
+    private int lastIndex = -1;
     private void Update()
     {
     }
@@ -74,6 +77,44 @@ public class PlayerInventory : MonoBehaviour
     public void EquippedInventoryUpdate()
     {
         equippedInventoryMnager.UpdateList(playerInventry, InventoryType.Inventory);
+    }
+    public void listMovement(int thisIndex, bool isContent, Image thisImg)
+    {
+        if (lastIndex == -1)
+        {
+            Debug.Log("一度目のクリック。");
+            
+            //一回目
+            if (isContent == false)
+            {
+                return;
+                
+            }
+            lastIndex = thisIndex;
+            img = thisImg;
+            img.enabled = true;
+
+        }
+        else
+        {
+            Debug.Log("二度目のクリック。");
+            img.enabled = false;
+            if (isContent)
+            {
+                (playerInventry[lastIndex], playerInventry[thisIndex]) = (playerInventry[thisIndex], playerInventry[lastIndex]);
+                // 入れ替え
+                lastIndex = -1;
+                EquippedInventoryUpdate();
+            }
+            else
+            {
+                // 差し込み
+                //未完成
+                lastIndex = -1;
+                EquippedInventoryUpdate();
+            }
+            img.enabled = false;
+        }
     }
 }
 

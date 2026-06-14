@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
+using Shapes2D;
+using Shape = Shapes2D.Shape;
 
 public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 {
@@ -23,6 +25,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     [SerializeField]private TMPro.TextMeshProUGUI addToObj;
     [SerializeField]private SVGImage imageObj;
     [HideInInspector]private InventoryType inventoryType;
+    [SerializeField]private Image img;
 
     public bool isContent;
 
@@ -32,6 +35,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        img.enabled = false;
         playerScript = FindAnyObjectByType<MotherBoard>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
         if(isContent == false) { 
@@ -73,20 +77,24 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            //左
+            Debug.Log("左クリック");
             if (inventoryType == InventoryType.Circuit)
             {
-                equippedInventoryMnager.listMovement(thisIndex, isContent, playerScript.circuit[thisIndex]);
+                playerScript.listMovement(thisIndex, isContent, img);
             }
             else if (inventoryType == InventoryType.Inventory)
             {
-                equippedInventoryMnager.listMovement(thisIndex, isContent);
+                playerInventory.listMovement(thisIndex, isContent, img);
             }
             
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
+            //右
             if (inType == InventoryType.Circuit)
             {
+                Debug.Log("回路の右クリック");
                 playerScript.UnEquipItem(thisIndex);
             }
             else

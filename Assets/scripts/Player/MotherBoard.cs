@@ -1,7 +1,9 @@
+using Shapes2D;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 using static InventoryDisplay;
 using static UnityEditor.Progress;
 
@@ -55,6 +57,9 @@ public class MotherBoard : MonoBehaviour
     [SerializeField]private AudioClip overSound;
 
     [SerializeField]private EquippedInventoryMnager equippedInventoryMnager;
+    [SerializeField]private int lastIndex = -1;
+    private Image img;
+
 
     void Start()
     {
@@ -294,4 +299,40 @@ public class MotherBoard : MonoBehaviour
     }
 
 
+    public void listMovement(int thisIndex, bool isContent, Image thisImg)
+    {
+        if (lastIndex == -1)
+        {
+            Debug.Log("一度目のクリック。");
+            if (isContent == false)
+            {
+                return;
+            }
+            lastIndex = thisIndex;
+            img = thisImg;
+            img.enabled = true;
+
+        }
+        else
+        {
+            Debug.Log("二度目のクリック。");
+            if (isContent)
+            {
+                Debug.Log("入れ替え");
+                (circuit[lastIndex],circuit[thisIndex]) = (circuit[thisIndex], circuit[lastIndex]);
+                // 入れ替え
+                lastIndex = -1;
+                EquippedInventoryUpdate();
+            }
+            else
+            {
+                Debug.Log("差し込み");
+                // 差し込み
+                //未完成
+                lastIndex = -1;
+                EquippedInventoryUpdate();
+            }
+            img.enabled = false;
+        }
+    }
 }

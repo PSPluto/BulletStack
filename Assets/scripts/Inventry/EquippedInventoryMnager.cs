@@ -42,31 +42,5 @@ public class EquippedInventoryMnager : MonoBehaviour
 
 
     }
-    public void listMovement(int? thisIndex, bool isContent, List<Modifier> modifiers)
-    {
-        if (thisIndex == null)
-        {
-            if (isContent == false)
-            {
-                return;
-            }
-            findex = thisIndex;
-            Modifier = findex;
-            
-        }
-        else
-        {
-            sisContent = isContent;
-            if (isContent)
-            {
-                // ì¸ÇÍë÷Ç¶
-            }
-            else
-            {
-                // ç∑ÇµçûÇ›
-            }
-        }
-        
-
-    }
+    
 }
