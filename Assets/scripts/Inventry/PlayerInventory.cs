@@ -66,8 +66,9 @@ public class PlayerInventory : MonoBehaviour
     }
 
     IEnumerator InGameLoop()
-    {
-            yield return null;
+    {   
+        lastIndex = -1;
+        yield return null;
     }
 
     IEnumerator GameOverLoop()
@@ -78,7 +79,7 @@ public class PlayerInventory : MonoBehaviour
     {
         equippedInventoryMnager.UpdateList(playerInventry, InventoryType.Inventory);
     }
-    public void listMovement(int thisIndex, bool isContent, Image thisImg)
+    public void listMovement(int thisIndex = -1, bool isContent = false, Image thisImg = null)
     {
         if (lastIndex == -1)
         {
@@ -98,7 +99,10 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             Debug.Log("二度目のクリック。");
-            img.enabled = false;
+            if (img != null)
+            {
+                img.enabled = false;
+            }
             if (isContent)
             {
                 (playerInventry[lastIndex], playerInventry[thisIndex]) = (playerInventry[thisIndex], playerInventry[lastIndex]);

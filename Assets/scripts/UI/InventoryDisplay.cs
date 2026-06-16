@@ -96,10 +96,13 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
             {
                 Debug.Log("回路の右クリック");
                 playerScript.UnEquipItem(thisIndex);
+                //引数なしで初期化
+                playerScript.listMovement();
             }
             else
             {
                 playerInventory.EquipItem(thisIndex);
+                playerInventory.listMovement();
             }
         }
     }

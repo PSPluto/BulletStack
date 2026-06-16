@@ -299,7 +299,7 @@ public class MotherBoard : MonoBehaviour
     }
 
 
-    public void listMovement(int thisIndex, bool isContent, Image thisImg)
+    public void listMovement(int thisIndex = -1, bool isContent = false, Image thisImg = null)
     {
         if (lastIndex == -1)
         {
@@ -332,7 +332,10 @@ public class MotherBoard : MonoBehaviour
                 lastIndex = -1;
                 EquippedInventoryUpdate();
             }
-            img.enabled = false;
+            if (img != null)
+            {
+                img.enabled = false;
+            }
         }
     }
 }
