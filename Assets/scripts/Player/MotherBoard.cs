@@ -303,14 +303,20 @@ public class MotherBoard : MonoBehaviour
     {
         if (lastIndex == -1)
         {
-            Debug.Log("一度目のクリック。");
+            //一回目
             if (isContent == false)
             {
+                Debug.Log("一度目のクリック（失敗）");
                 return;
+
             }
+            Debug.Log("一度目のクリック。");
             lastIndex = thisIndex;
             img = thisImg;
-            img.enabled = true;
+            if (img != null)
+            {
+                img.enabled = true;
+            }
 
         }
         else

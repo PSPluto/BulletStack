@@ -83,30 +83,29 @@ public class PlayerInventory : MonoBehaviour
     {
         if (lastIndex == -1)
         {
-            
-            
+
             //一回目
             if (isContent == false)
             {
-                Debug.Log("一度目のクリック（失敗）");
+                Debug.Log($"一度目（失敗）{lastIndex}");
                 return;
                 
             }
-            Debug.Log("一度目のクリック。");
+            Debug.Log($"一度目のクリック。{lastIndex}");
             lastIndex = thisIndex;
             img = thisImg;
-            img.enabled = true;
+            if (img != null)
+            {
+                img.enabled = true;
+            }
 
         }
         else
         {
             Debug.Log("二度目のクリック。");
-            if (img != null)
-            {
-                img.enabled = false;
-            }
             if (isContent)
             {
+                Debug.Log("入れ替え");
                 (playerInventry[lastIndex], playerInventry[thisIndex]) = (playerInventry[thisIndex], playerInventry[lastIndex]);
                 // 入れ替え
                 lastIndex = -1;
@@ -114,12 +113,16 @@ public class PlayerInventory : MonoBehaviour
             }
             else
             {
+                Debug.Log("差し込み");
                 // 差し込み
                 //未完成
                 lastIndex = -1;
                 EquippedInventoryUpdate();
             }
-            img.enabled = false;
+            if (img != null)
+            {
+                img.enabled = false;
+            }
         }
     }
 }

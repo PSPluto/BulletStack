@@ -38,6 +38,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnt
 
     private void Start()
     {
+        inventoryType = inType;
         modStatsDisplay = FindAnyObjectByType<MODStatsDisplay>();
         playerScript = FindAnyObjectByType<MotherBoard>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
@@ -49,7 +50,6 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnt
     }
     public void SetList(InventoryType type)
     {
-        inventoryType = type;
         if (type == InventoryType.Circuit)
         {
             InventoryHUDUpdate(playerScript.circuit);

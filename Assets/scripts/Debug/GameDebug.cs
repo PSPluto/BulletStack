@@ -18,5 +18,9 @@ public class GameDebug : MonoBehaviour
         {
             rewordInventrySystem.NewRewardCreate();
         }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            Debug.Log(FindObjectsByType<PlayerInventory>(sortMode: FindObjectsSortMode.None).Length);
+        }
     }
 }
