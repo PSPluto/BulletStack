@@ -8,6 +8,7 @@ public class EquippedInventoryMnager : MonoBehaviour
 {
     [SerializeField] private int indexBox;
     [SerializeField] private GameObject hudObj;
+    [SerializeField] private GameObject hudSpace;
     private HashSet<GameObject> objects = new HashSet<GameObject>();
     private GameObject obj;
     private int? findex;
@@ -38,6 +39,14 @@ public class EquippedInventoryMnager : MonoBehaviour
             //インデックスと担当するインベントリ、このスクリプトへの参照
             //が渡される
             objects.Add(obj);
+
+            obj = Instantiate(hudSpace, transform.Find("Scroll View/Viewport/Content"));
+            inventoryDisplay = obj.GetComponent<InventoryDisplay>();
+            inventoryDisplay.thisIndex = indexBox;
+            inventoryDisplay.inType = invType;
+            inventoryDisplay.equippedInventoryMnager = this;
+            objects.Add(obj);
+
         }
 
 

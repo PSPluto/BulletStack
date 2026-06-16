@@ -1,13 +1,14 @@
+using NUnit.Framework;
+using Shapes2D;
+using System;
+using System.Collections.Generic;
 using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
-using System;
-using Shapes2D;
+using UnityEngine.UI;
 using Shape = Shapes2D.Shape;
 
-public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
+public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public enum InventoryType
     {
@@ -20,12 +21,14 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 
     
     public Modifier modData;
+    public AddModifier addModData;
 
     [SerializeField]private TMPro.TextMeshProUGUI modNameObj;
     [SerializeField]private TMPro.TextMeshProUGUI addToObj;
     [SerializeField]private SVGImage imageObj;
     [HideInInspector]private InventoryType inventoryType;
     [SerializeField]private Image img;
+    public MODStatsDisplay modStatsDisplay;
 
     public bool isContent;
 
@@ -35,12 +38,13 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        img.enabled = false;
+        modStatsDisplay = FindAnyObjectByType<MODStatsDisplay>();
         playerScript = FindAnyObjectByType<MotherBoard>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
         if(isContent == false) { 
             return;
         }
+        img.enabled = false;
         SetList(inType);
     }
     public void SetList(InventoryType type)
@@ -57,6 +61,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
     }
     public void InventoryHUDUpdate(List<Modifier> modifiers)
     {
+        if (!isContent) {  return; }
         //自分のindexIDをつかって情報を更新
         if (modifiers.Count >= thisIndex+1)
         {
@@ -66,6 +71,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
             if (modData is AddModifier addModifier)
             {
                 addToObj.text = addModifier.applicableTo.ToString();
+                addModData = addModifier;
             }
             else
             {
@@ -92,11 +98,12 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             //右
+            if (!isContent) { return; }
             if (inType == InventoryType.Circuit)
             {
                 Debug.Log("回路の右クリック");
                 playerScript.UnEquipItem(thisIndex);
-                //引数なしで初期化
+                //引数なしで初期化できる↓
                 playerScript.listMovement();
             }
             else
@@ -105,6 +112,17 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler
                 playerInventory.listMovement();
             }
         }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!isContent) { return;}
+            modStatsDisplay.UpdateUI(modData.name, modData.description, modData.resistance, modData.voltageCost, addModData?.applicableTo, addModData?.addValue);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!isContent) { return; }
+        modStatsDisplay.UpdateUI();
     }
 
 }

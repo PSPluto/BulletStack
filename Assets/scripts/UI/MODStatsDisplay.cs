@@ -1,7 +1,5 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-// 1. 新しいInput Systemのネームスペースを追加
 using UnityEngine.InputSystem;
 using static AddModifier;
 
@@ -14,10 +12,13 @@ public class MODStatsDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI applicableTo;
     [SerializeField] private TextMeshProUGUI valueText;
+    [SerializeField] private RectTransform thisRect;
+    [SerializeField] private RectTransform imgRect;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        rectTransform.localScale = Vector3.zero;
     }
 
     void Update()
@@ -36,6 +37,7 @@ public class MODStatsDisplay : MonoBehaviour
         {
             rectTransform.anchoredPosition = localPoint + (new Vector2(10,-10));
         }
+            
     }
     public void UpdateUI(string name = null, string desc = null, float? resistance = null, float? cost = null, ApplicableTo? to = null, float? value = null) {
         if (name == null) {
@@ -56,6 +58,14 @@ public class MODStatsDisplay : MonoBehaviour
             applicableTo.text = "---";
             valueText.text = "---";
         }
-    
+        if (thisRect.position.x < 0)
+        {
+            imgRect.anchoredPosition = new Vector2(150, -30);
+        }
+        else
+        {
+            imgRect.anchoredPosition = new Vector2(-150, -30);
+        }
+
     }
 }

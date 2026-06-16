@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (index < 0 || index >= playerInventry.Count || playerInventry[index] == null)
         {
-            //Debug.Log($"ポインタが配列の範囲外か、値がnullでした");
+            //Debug.Log($"indexが配列の範囲外か、値がnullでした");
             return;
         }
         motherBoard.circuit.Add(playerInventry[index]);
@@ -83,14 +83,16 @@ public class PlayerInventory : MonoBehaviour
     {
         if (lastIndex == -1)
         {
-            Debug.Log("一度目のクリック。");
+            
             
             //一回目
             if (isContent == false)
             {
+                Debug.Log("一度目のクリック（失敗）");
                 return;
                 
             }
+            Debug.Log("一度目のクリック。");
             lastIndex = thisIndex;
             img = thisImg;
             img.enabled = true;
