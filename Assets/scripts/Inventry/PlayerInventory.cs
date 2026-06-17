@@ -116,6 +116,12 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("ç∑ÇµçûÇ›");
                 // ç∑ÇµçûÇ›
                 //ñ¢äÆê¨
+
+                Modifier temporaryModifire = playerInventry[lastIndex];
+                playerInventry[lastIndex] = null;
+                playerInventry.Insert(thisIndex - 1, temporaryModifire);
+                playerInventry.Remove(null);
+
                 lastIndex = -1;
                 EquippedInventoryUpdate();
             }
