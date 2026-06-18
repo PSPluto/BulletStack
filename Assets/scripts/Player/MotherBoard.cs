@@ -335,10 +335,13 @@ public class MotherBoard : MonoBehaviour
                 Debug.Log("差し込み");
                 // 差し込み
                 //未完成
-                Modifier temporaryModifire = circuit[lastIndex];
-                circuit[lastIndex] = null;
-                circuit.Insert(thisIndex - 1, temporaryModifire);
-                circuit.Remove(null);
+                if (circuit.Count > 1)
+                {
+                    Modifier temporaryModifire = circuit[lastIndex];
+                    circuit[lastIndex] = null;
+                    circuit.Insert(thisIndex - 1, temporaryModifire);
+                    circuit.Remove(null);
+                }
 
                 lastIndex = -1;
                 EquippedInventoryUpdate();

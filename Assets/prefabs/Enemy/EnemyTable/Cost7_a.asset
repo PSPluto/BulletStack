@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f054b0d2078a78047a95f90ddecf6aa8, type: 3}
+  m_Name: Cost7_a
+  m_EditorClassIdentifier: Assembly-CSharp::BaseEnemyPattern
+  cost: 7
+  prefabs:
+  - {fileID: 4819994783466884235, guid: 782f85d81e328df4595aec0beda2253d, type: 3}
+  - {fileID: 4819994783466884235, guid: c22261f03af3ded428c93ed7d08ec861, type: 3}
+  - {fileID: 4819994783466884235, guid: 6ac11dfe4b0d8f74ba0ccde0cde18fd4, type: 3}
+  - {fileID: 4819994783466884235, guid: c22261f03af3ded428c93ed7d08ec861, type: 3}
+  - {fileID: 4819994783466884235, guid: 782f85d81e328df4595aec0beda2253d, type: 3}

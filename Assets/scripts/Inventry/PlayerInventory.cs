@@ -116,11 +116,13 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("·‚µž‚Ý");
                 // ·‚µž‚Ý
                 //–¢Š®¬
-
-                Modifier temporaryModifire = playerInventry[lastIndex];
-                playerInventry[lastIndex] = null;
-                playerInventry.Insert(thisIndex - 1, temporaryModifire);
-                playerInventry.Remove(null);
+                if (playerInventry.Count > 1)
+                {
+                    Modifier temporaryModifire = playerInventry[lastIndex];
+                    playerInventry[lastIndex] = null;
+                    playerInventry.Insert(thisIndex - 1, temporaryModifire);
+                    playerInventry.Remove(null);
+                }
 
                 lastIndex = -1;
                 EquippedInventoryUpdate();
