@@ -73,7 +73,7 @@
             canvas.name = "Canvas";
             canvas.gameObject.layer = LayerMask.NameToLayer("UI");
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            if (GameObject.FindObjectOfType<EventSystem>() == null) {
+            if (GameObject.FindAnyObjectByType<EventSystem>() == null) {
                 GameObject es = new GameObject();
                 es.name = "Event System";
                 es.AddComponent<EventSystem>();

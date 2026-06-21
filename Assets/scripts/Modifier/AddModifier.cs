@@ -30,17 +30,17 @@ public class AddModifier : Modifier
     public void RollRandomStats()
     {
         //適用先(applicableTo)をDamage, Voltage, Speedの中からランダムに選んでる
-        applicableTo = (ApplicableTo)Random.Range(0, System.Enum.GetValues(typeof(ApplicableTo)).Length);
+        applicableTo = (ApplicableTo)RNGManager.Reward.Next(0, System.Enum.GetValues(typeof(ApplicableTo)).Length);
         switch (applicableTo)
         {
             case ApplicableTo.Damage:
-                addValue = Random.Range(2f, 6f);
+                addValue = (float)(RNGManager.Reward.NextDouble() * (6f - 2f) + 2f);
                 break;
             case ApplicableTo.Voltage:
-                addValue = Random.Range(4f, 8f);
+                addValue = (float)(RNGManager.Reward.NextDouble() * (8f - 4f) + 4f);
                 break;
             case ApplicableTo.Speed:
-                addValue = Random.Range(1f, 6f);
+                addValue = (float)(RNGManager.Reward.NextDouble() * (6f - 1f) + 1f);
                 break;
         }
     }

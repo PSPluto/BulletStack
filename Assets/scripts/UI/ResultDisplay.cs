@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class InGameManager : MonoBehaviour
+public class ResultDisplay : MonoBehaviour
 {
+    public TMPro.TMP_Text waveText;
+    public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text newRecordText;
+    public TMPro.TMP_Text SeedText;
+    public MotherBoard player;
+    public Animator anim;
     Coroutine _activeLoop;
     void Start()
     {
-
+        
     }
     void OnEnable()
     {
@@ -39,15 +44,17 @@ public class InGameManager : MonoBehaviour
     }
     IEnumerator TitleLoop()
     {
+        anim.SetBool("IsShow", false);
         while (true)
         {
-            // タイトルのループ処理
             yield return null;
         }
     }
 
     IEnumerator InGameLoop()
     {
+
+        anim.SetBool("IsShow", false);
         while (true)
         {
             // インゲームのループ処理
@@ -57,14 +64,10 @@ public class InGameManager : MonoBehaviour
 
     IEnumerator GameOverLoop()
     {
-         var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-
-        foreach (var enemy in enemies)
-        {
-            Destroy(enemy.gameObject);
-        }
-        Debug.Log("敵が消えたはずです");
-
+        anim.SetBool("IsShow", true);
+        waveText.text = PhaseManager.Instance.wave.ToString();
+        scoreText.text = player.score.ToString();
+        SeedText.text = "| " + player.currentSeed.ToString();
         while (true)
         {
             // ゲームオーバーのループ処理

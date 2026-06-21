@@ -16,6 +16,7 @@ public class PhaseManager : MonoBehaviour
     [Header("敵の出現陣形を入れる。")]
     public List<BaseEnemyPattern> EnemyPatterns;
     public bool isSpawning;
+    public bool isIngame = false;
     private void Awake()
     {
         Instance = this;
@@ -54,6 +55,7 @@ public class PhaseManager : MonoBehaviour
     }
     IEnumerator TitleLoop()
     {
+        isIngame = false;
         wave = 0;
         while (true)
         {
@@ -63,6 +65,7 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
+        isIngame = true;
         isSpawning = false;
         wave = 0;
         //StartCoroutine(SpawnEnemys());
@@ -78,6 +81,7 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator GameOverLoop()
     {
+        isIngame = false;
         while (true)
         {
             // ゲームオーバーのループ処理
@@ -98,7 +102,7 @@ public class PhaseManager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 continue;
             }
-            SpawnPattern(resultEnemyTable[Random.Range(0, (resultEnemyTable.Count))].prefabs);
+            SpawnPattern(resultEnemyTable[RNGManager.Reward.Next(0, resultEnemyTable.Count)].prefabs);
             yield return new WaitForSeconds(1);
         }
         isSpawning = false;
@@ -110,7 +114,11 @@ public class PhaseManager : MonoBehaviour
         {
             if (spawnPrefab[i] != null)
             {
-                enemySpawner.SpawnEnemy(spawnPrefab[i], i - 2);
+                if (isIngame)
+                {
+                    enemySpawner.SpawnEnemy(spawnPrefab[i], i - 2);
+                }
+
             }
         }
     }
@@ -133,8 +141,8 @@ public class PhaseManager : MonoBehaviour
 
         if ((enemyCount <= 0) && isSpawning == false)
         {
-            Debug.Log("フェーズ終了！");
-            Debug.Log("コルーチン呼び出し");
+            //Debug.Log("フェーズ終了！");
+            //Debug.Log("コルーチン呼び出し");
             StartCoroutine(NextPhaseRoutine());
         }
     }
@@ -142,7 +150,7 @@ public class PhaseManager : MonoBehaviour
     IEnumerator NextPhaseRoutine()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("新しいフェーズの始まり");
+        //Debug.Log("新しいフェーズの始まり");
         SpawnNewEnemy();
         wave = wave + 1;
         Debug.Log(wave);
@@ -157,7 +165,7 @@ public class PhaseManager : MonoBehaviour
     {
         // 敵パターンのテーブルを更新
         // コストの計算
-        CostInit((wave * 2) + 4,Random.Range(wave+3, (wave * 2) + 1));
+        CostInit((wave * 2) + 4,RNGManager.Gameplay.Next(wave/2+1, wave+1));
         Debug.Log($"計算結果：[{string.Join(", ", costWheight)}]");
 
         StartCoroutine(SpawnEnemys());
@@ -185,7 +193,11 @@ public class PhaseManager : MonoBehaviour
                 costWheight.Add(temporaryCostList[i]);
                 return;
             }
-            int indexCost = Random.Range(0, temporaryCostList[i]);
+            int indexCost = RNGManager.Gameplay.Next(0, temporaryCostList[i]);
+            if (indexCost > 10)
+            {
+                indexCost = 10;
+            }
             costWheight.Add(indexCost);
             temporaryCostList[i] -= indexCost;
             temporaryCostList[i + 1] += temporaryCostList[i];

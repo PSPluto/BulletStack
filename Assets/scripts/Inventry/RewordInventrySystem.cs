@@ -108,6 +108,8 @@ public class RewordInventrySystem : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
+        stack = 0;
+        CleanTable();
         while (true)
         {
             // インゲームのループ処理

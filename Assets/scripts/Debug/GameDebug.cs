@@ -20,7 +20,11 @@ public class GameDebug : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            Debug.Log(FindObjectsByType<PlayerInventory>(sortMode: FindObjectsSortMode.None).Length);
+            Debug.Log(FindObjectsByType<InGameManager>(sortMode: FindObjectsSortMode.None).Length);
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Debug.Log(motherBoard.currentSeed);
         }
     }
 }

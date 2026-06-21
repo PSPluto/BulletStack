@@ -66,7 +66,6 @@ public class Enemy : MonoBehaviour
         ParticleManager.Instance.CreateParticle(dieParticlePrefab, this.transform.position, transform.rotation);
         Destroy(gameObject);
         PhaseManager.Instance.PhaseEndCheck();
-        Debug.Log("敵死");
         AudioManager.Instance.Playsound(dieSE);
 
     }

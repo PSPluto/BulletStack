@@ -123,7 +123,7 @@ public class StreamEmitter : Enemy
     {
         for (int i = 0; i < burstCount; i++)
         {
-            float spread = Random.Range(-5f, 5f);
+            float spread = ((float)RNGManager.Player.NextDouble() * 10f) - 5f;
             EmitBullet(aimAngle + spread);
             yield return new WaitForSeconds(fireRate);
         }

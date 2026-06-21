@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f054b0d2078a78047a95f90ddecf6aa8, type: 3}
-  m_Name: Cost2_a
+  m_Name: Cost8_c
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemyPattern
-  cost: 2
+  cost: 8
   prefabs:
-  - {fileID: 4819994783466884235, guid: c22261f03af3ded428c93ed7d08ec861, type: 3}
+  - {fileID: 4819994783466884235, guid: 782f85d81e328df4595aec0beda2253d, type: 3}
+  - {fileID: 4819994783466884235, guid: 782f85d81e328df4595aec0beda2253d, type: 3}
+  - {fileID: 4819994783466884235, guid: 782f85d81e328df4595aec0beda2253d, type: 3}
   - {fileID: 0}
-  - {fileID: 4819994783466884235, guid: 0a19b3c14e22f69469ac6aaa524711c7, type: 3}
   - {fileID: 0}
-  - {fileID: 4819994783466884235, guid: c22261f03af3ded428c93ed7d08ec861, type: 3}

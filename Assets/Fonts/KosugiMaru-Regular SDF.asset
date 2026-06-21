@@ -6,7 +6,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KosugiMaru-Regular Atlas
+  m_Name: KosugiMaru-Regular SDF Atlas
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -172,24 +172,24 @@ MonoBehaviour:
     m_FaceIndex: 0
     m_FamilyName: Kosugi Maru
     m_StyleName: Regular
-    m_PointSize: 90
+    m_PointSize: 157
     m_Scale: 1
     m_UnitsPerEM: 1024
-    m_LineHeight: 90
-    m_AscentLine: 79.18945
-    m_CapLine: 69
-    m_MeanLine: 48
+    m_LineHeight: 157
+    m_AscentLine: 138.1416
+    m_CapLine: 120
+    m_MeanLine: 84
     m_Baseline: 0
-    m_DescentLine: -10.810547
-    m_SuperscriptOffset: 79.18945
+    m_DescentLine: -18.858398
+    m_SuperscriptOffset: 138.1416
     m_SuperscriptSize: 0.5
-    m_SubscriptOffset: -10.810547
+    m_SubscriptOffset: -18.858398
     m_SubscriptSize: 0.5
-    m_UnderlineOffset: -12.568359
-    m_UnderlineThickness: 3.3398438
-    m_StrikethroughOffset: 19.2
-    m_StrikethroughThickness: 3.3398438
-    m_TabWidth: 45
+    m_UnderlineOffset: -21.924805
+    m_UnderlineThickness: 5.826172
+    m_StrikethroughOffset: 33.6
+    m_StrikethroughThickness: 5.826172
+    m_TabWidth: 79
   m_Material: {fileID: -7517330450335159492}
   m_SourceFontFileGUID: e522d28ffa275ca40bbc08d90fc6b875
   m_CreationSettings:
@@ -197,15 +197,15 @@ MonoBehaviour:
     sourceFontFileGUID: e522d28ffa275ca40bbc08d90fc6b875
     faceIndex: 0
     pointSizeSamplingMode: 0
-    pointSize: 90
+    pointSize: 157
     padding: 9
     paddingMode: 2
     packingMode: 0
     atlasWidth: 1024
     atlasHeight: 1024
-    characterSetSelectionMode: 7
-    characterSequence: 
-    referencedFontAssetGUID: 
+    characterSetSelectionMode: 6
+    characterSequence: 20-7E,2026,25A1,3000
+    referencedFontAssetGUID: c3778d6909ec20b43b42185b248d1ae2
     referencedTextAssetGUID: 
     fontStyle: 0
     fontStyleModifier: 0

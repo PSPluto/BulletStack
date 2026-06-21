@@ -79,7 +79,7 @@ public class RandomShooter : Enemy
             for (int i = 0; i < burstCount; i++)
             {
                 // 完全ランダムな方向に発射
-                float randomAngle = Random.Range(0f, 360f);
+                float randomAngle = (float)RNGManager.Gameplay.NextDouble() * 360;
                 Shoot(randomAngle);
                 yield return new WaitForSeconds(fireRate);
             }

@@ -42,6 +42,8 @@ public class MotherBoard : MonoBehaviour
     public int   currentLevel;
     public int   score;
 
+    public int currentSeed;
+
     [SerializeField]private AudioClip lvUpSE;
 
 
@@ -136,6 +138,14 @@ public class MotherBoard : MonoBehaviour
         circuit.Clear();
         equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
     }
+    public void InitSeed(bool isReplay)
+    {
+        if (isReplay == false)
+        {
+            currentSeed = Time.deltaTime.GetHashCode();
+        }
+        RNGManager.Init(currentSeed);
+    }
 
 
     public void TakeDamage(float damage)
@@ -176,7 +186,7 @@ public class MotherBoard : MonoBehaviour
     public Quaternion SetRotateOffset(float maxAngle)
     {
         float myAngle = transform.rotation.eulerAngles.y;
-        float rundomOffset = Random.Range(-maxAngle, maxAngle);
+        float rundomOffset = (float)RNGManager.Player.NextDouble() * (maxAngle * 2) - maxAngle;
         Quaternion bulletRotation = Quaternion.Euler(0, 0, myAngle + rundomOffset);
         return bulletRotation;
     }
@@ -245,7 +255,7 @@ public class MotherBoard : MonoBehaviour
             boltScript.damage = resultBaseDamage;
             boltScript.speed = resultBulletSpeed;
         }
-        _audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+        _audioSource.pitch = 1f + (float)RNGManager.Player.NextDouble() * 0.2f - 0.1f;
         _audioSource.PlayOneShot(shotSound);
     }
     private void SetFinalResults(Signal s)

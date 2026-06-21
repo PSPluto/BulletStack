@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemyPattern
   cost: 2
   prefabs:
-  - {fileID: 0}
   - {fileID: 4819994783466884235, guid: 0a19b3c14e22f69469ac6aaa524711c7, type: 3}
+  - {fileID: 0}
   - {fileID: 4819994783466884235, guid: 6ac11dfe4b0d8f74ba0ccde0cde18fd4, type: 3}
-  - {fileID: 4819994783466884235, guid: 0a19b3c14e22f69469ac6aaa524711c7, type: 3}
   - {fileID: 0}
+  - {fileID: 4819994783466884235, guid: 0a19b3c14e22f69469ac6aaa524711c7, type: 3}
