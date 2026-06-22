@@ -13,15 +13,15 @@ public class AddModifier : Modifier
         {
             case ApplicableTo.Damage:
                 // 適用先(applicableTo)がダメージならbaseDamageに加算する値(addValue)を加算
-                signal.baseDamage += addValue;
+                signal.baseDamage += addValue * signal.modMultiplier;
                 break;
             case ApplicableTo.Voltage:
                 // 適用先(applicableTo)が電圧ならvoltageに加算する値(addValue)を加算
-                signal.voltage += addValue;
+                signal.voltage += addValue * signal.modMultiplier;
                 break;
             case ApplicableTo.Speed:
                 // 適用先(applicableTo)が速度ならbulletSpeedに加算する値(addValue)を加算
-                signal.bulletSpeed += addValue;
+                signal.bulletSpeed += addValue * signal.modMultiplier;
                 break;
         }
 

@@ -6,9 +6,8 @@ public class SplitModifier : Modifier
 
     public override void Process(Signal signal)
     {
-        signal.pelletCount *= 2;
-        signal.bulletSpeed /= 1.25f;
-        signal.baseDamage /= 1.5f;
-
+        signal.pelletCount = (int)(signal.pelletCount * 2 * signal.modMultiplier);
+        signal.bulletSpeed /= (2f * signal.modMultiplier);
+        signal.baseDamage /= (2f * signal.modMultiplier);
     }
 }

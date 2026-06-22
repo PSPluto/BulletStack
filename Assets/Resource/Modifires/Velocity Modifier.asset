@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a56bef353b7c0041b642ff4b5cff7ff, type: 3}
+  m_Name: Velocity Modifier
+  m_EditorClassIdentifier: Assembly-CSharp::VelocityModifier
+  chipName: "\u30DC\u30FC\u30C0\u30FC"
+  description: "\u901F\u5EA6\u304C10\u3092\u8D85\u3048\u3066\u3044\u305F\u5834\u5408\u3001\u5024\u3092\u95BE\u5024\u306B\u5408\u308F\u305B\u8D85\u904E\u5206\u3092\u30C0\u30E1\u30FC\u30B8\u306B\u52A0\u7B97\u3059\u308B"
+  icon: {fileID: 3286163911610860551, guid: 2a4b02044d93a684abd8d3887be19a9c, type: 3}
+  Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
+  resistance: 0.5
+  voltageCost: 2

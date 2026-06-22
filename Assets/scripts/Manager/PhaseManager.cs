@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PhaseManager : MonoBehaviour
 {
     Coroutine _activeLoop;
+    public MotherBoard player;
     public RewordInventrySystem rewordInventrySystem;
     public EnemySpawner enemySpawner;
+    public TMP_Text wavetext;
+    public Animator OKButton;
+    private int lastLv;
 
     public static PhaseManager Instance { get; private set; }
 
@@ -23,7 +28,7 @@ public class PhaseManager : MonoBehaviour
     }
     void Start()
     {
-
+        OKButton.gameObject.SetActive(false);
 
     }
     void OnEnable()
@@ -65,12 +70,14 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator InGameLoop()
     {
+        lastLv = 1;
         isIngame = true;
         isSpawning = false;
         wave = 0;
         //StartCoroutine(SpawnEnemys());
-        SpawnNewEnemy();
         wave = wave + 1;
+        SpawnNewEnemy();
+        wavetext.text = ($"Wave:{wave}");
 
 
         while (true)
@@ -141,24 +148,35 @@ public class PhaseManager : MonoBehaviour
 
         if ((enemyCount <= 0) && isSpawning == false)
         {
-            //Debug.Log("フェーズ終了！");
-            //Debug.Log("コルーチン呼び出し");
-            StartCoroutine(NextPhaseRoutine());
+            if (player.currentLevel != lastLv)
+            {
+                wavetext.text = ($"~設計タイム~");
+                OKButton.gameObject.SetActive(true);
+                OKButton.SetBool("Show", true);
+            }
+            else
+            {
+                NextWave();
+            }
+            lastLv = player.currentLevel;
         }
     }
-
+    public void CloseBtn()
+    {
+        OKButton.SetBool("Show",false);
+    }
+    public void NextWave()
+    {
+        StartCoroutine(NextPhaseRoutine());
+    }
     IEnumerator NextPhaseRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0f);
         //Debug.Log("新しいフェーズの始まり");
-        SpawnNewEnemy();
         wave = wave + 1;
-        Debug.Log(wave);
-    }
-
-    IEnumerator Weit(int sec)
-    {
-        yield return new WaitForSeconds(sec);
+        SpawnNewEnemy();
+        wavetext.text = ($"Wave:{wave}");
+        //Debug.Log(wave);
     }
 
     private void SpawnNewEnemy()
@@ -193,7 +211,7 @@ public class PhaseManager : MonoBehaviour
                 costWheight.Add(temporaryCostList[i]);
                 return;
             }
-            int indexCost = RNGManager.Gameplay.Next(0, temporaryCostList[i]);
+            int indexCost = RNGManager.Gameplay.Next(1, temporaryCostList[i]);
             if (indexCost > 10)
             {
                 indexCost = 10;

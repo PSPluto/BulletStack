@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a044ab987f5e49be9b84e5ac1cf5f, type: 3}
+  m_Name: Conservation Modifier
+  m_EditorClassIdentifier: Assembly-CSharp::ConservationModifier
+  chipName: "\u5E73\u5747\u5316"
+  description: "\u30C0\u30E1\u30FC\u30B8\u3068\u5F3E\u901F\u306E\u5024\u3092\u5E73\u5747\u5316\u3059\u308B"
+  icon: {fileID: 3286163911610860551, guid: a05ef1df0d6e5a248808b10fc1450632, type: 3}
+  Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
+  resistance: 0.5
+  voltageCost: 1

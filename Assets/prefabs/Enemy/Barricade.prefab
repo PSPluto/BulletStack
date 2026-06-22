@@ -135,17 +135,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlowDrifter
   rb: {fileID: 5933253686042220816}
   player: {fileID: 0}
-  maxHP: 10
+  maxHP: 100
   currentHP: 0
   moveSpeed: 4
   ScoreValue: 100
   XPValue: 10
   damage: 5
-  dieSE: {fileID: 0}
+  dieSE: {fileID: 8300000, guid: 49e81cbb08dd02242bbad30dc11f61da, type: 3}
   shotSE: {fileID: 0}
-  dieParticlePrefab: {fileID: 0}
-  isInvincible: 1
-  contactDamage: 5
+  dieParticlePrefab: {fileID: 1080897348848481451, guid: 116e52e90a1c7e843a09c013a4717119, type: 3}
+  shakeSystem: {fileID: 0}
+  isInvincible: 0
+  contactDamage: 10
   damageCooldown: 1
   acceleration: 2
   spriteTransform: {fileID: 3153705776761411581}

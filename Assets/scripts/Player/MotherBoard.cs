@@ -267,7 +267,7 @@ public class MotherBoard : MonoBehaviour
         resultSkipProbability = s.skipProbability;
         resultModMultiplier = s.modMultiplier;
         resultMaxSpreadAngle = s.maxSpreadAngle;
-        resultTimeToFire = TimeToFire;
+        resultTimeToFire = TimeToFire　+ s.minFireinterval;
         resultMinInterval = s.minFireinterval;
     }
     private void SetBreakValues()
@@ -349,7 +349,7 @@ public class MotherBoard : MonoBehaviour
                 {
                     Modifier temporaryModifire = circuit[lastIndex];
                     circuit[lastIndex] = null;
-                    circuit.Insert(thisIndex - 1, temporaryModifire);
+                    circuit.Insert(thisIndex+1, temporaryModifire);
                     circuit.Remove(null);
                 }
 
