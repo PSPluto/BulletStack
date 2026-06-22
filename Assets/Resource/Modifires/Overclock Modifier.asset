@@ -17,4 +17,4 @@ MonoBehaviour:
   icon: {fileID: 3286163911610860551, guid: 079a0bfd49222fa42b2ce81dec7988ae, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0
-  voltageCost: 9
+  voltageCost: 11

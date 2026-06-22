@@ -3,9 +3,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class VelocityModifier : Modifier
 {
+    // bulletSpeed‚ª10‚ð’´‚¦‚Ä‚¢‚éê‡A’´‰ß•ª‚ÌbulletSpeed‚É‰ž‚¶‚ÄbaseDamage‚ð‘‰Á‚³‚¹‚é
     public override void Process(Signal signal)
     {
-        float threshold = 15f;
+        float threshold = 10f;
         if (signal.bulletSpeed > threshold)
         {
             float excess = signal.bulletSpeed - threshold;
