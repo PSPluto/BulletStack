@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Velocity Modifier
   m_EditorClassIdentifier: Assembly-CSharp::VelocityModifier
   chipName: "\u901F\u5EA6\u30DC\u30FC\u30C0\u30FC"
-  description: "\u901F\u5EA6\u304C10\u3092\u8D85\u3048\u3066\u3044\u305F\u5834\u5408\u3001\u5024\u309210\u306B\u3057\u3001\u8D85\u904E\u5206\u3092\u30C0\u30E1\u30FC\u30B8\u306B\u52A0\u7B97\u3059\u308B"
+  description: "\u5F3E\u901F\u304C15\u4EE5\u4E0A\u3067\u3042\u308C\u3070\u3001\u305D\u306E\u8D85\u904E\u5206\u3092\u30C0\u30E1\u30FC\u30B8\u306B\u6E21\u3059\u3002\r\n"
   icon: {fileID: 3286163911610860551, guid: 2a4b02044d93a684abd8d3887be19a9c, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5

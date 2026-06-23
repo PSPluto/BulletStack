@@ -1,12 +1,9 @@
-using Shapes2D;
+
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 using static InventoryDisplay;
-using static UnityEditor.Progress;
-
 public class MotherBoard : MonoBehaviour
 {
     //public static MotherBoard Instance { get; private set; }
@@ -22,6 +19,7 @@ public class MotherBoard : MonoBehaviour
     public List<Modifier> circuit = new List<Modifier>();
     [SerializeField]private RewordInventrySystem rewordInventrySystem;
     [SerializeField]private ShakeSystem Camera;
+    [SerializeField]private MODStatsDisplay modStatsDisplay;
 
     [HideInInspector] public float resultVoltage;
     [HideInInspector]public float resultBaseDamage;
@@ -136,6 +134,7 @@ public class MotherBoard : MonoBehaviour
         levelUpXpValue = 60f;
         score = 0;
         circuit.Clear();
+        pInventory.playerInventry.Clear();
         equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
     }
     public void InitSeed(bool isReplay)
@@ -310,6 +309,7 @@ public class MotherBoard : MonoBehaviour
     public void EquippedInventoryUpdate()
     {
         equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
+        modStatsDisplay.UpdateUI();
     }
 
 

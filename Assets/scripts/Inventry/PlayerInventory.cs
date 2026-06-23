@@ -10,6 +10,7 @@ public class PlayerInventory : MonoBehaviour
 {
     public MotherBoard motherBoard;
     public EquippedInventoryMnager equippedInventoryMnager;
+    public MODStatsDisplay modStatsDisplay;
 
     public List<Modifier> playerInventry;
     private Image img;
@@ -78,9 +79,15 @@ public class PlayerInventory : MonoBehaviour
     public void EquippedInventoryUpdate()
     {
         equippedInventoryMnager.UpdateList(playerInventry, InventoryType.Inventory);
+        modStatsDisplay.UpdateUI();
     }
     public void listMovement(int thisIndex = -1, bool isContent = false, Image thisImg = null)
     {
+        if (thisIndex == -1)
+        {
+            lastIndex = -1;
+            return;
+        }
         if (lastIndex == -1)
         {
 
@@ -120,7 +127,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     Modifier temporaryModifire = playerInventry[lastIndex];
                     playerInventry[lastIndex] = null;
-                    playerInventry.Insert(thisIndex - 1, temporaryModifire);
+                    playerInventry.Insert(thisIndex , temporaryModifire);
                     playerInventry.Remove(null);
                 }
 

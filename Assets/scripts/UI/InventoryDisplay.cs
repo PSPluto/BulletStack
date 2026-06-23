@@ -103,7 +103,7 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnt
             {
                 Debug.Log("回路の右クリック");
                 playerScript.UnEquipItem(thisIndex);
-                //引数なしで初期化できる↓
+                //引数なしで呼べば初期化できる↓
                 playerScript.listMovement();
             }
             else

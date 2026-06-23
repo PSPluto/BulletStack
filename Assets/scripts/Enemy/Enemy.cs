@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 
 public class Enemy : MonoBehaviour

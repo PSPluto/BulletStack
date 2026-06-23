@@ -8,6 +8,8 @@ public class RewordInventrySystem : MonoBehaviour
 
     public PlayerInventory pInventry;
     public MotherBoard motherBoard;
+    public MODStatsDisplay modStatsDisplay;
+
     public int stack = 0;
 
 
@@ -24,6 +26,7 @@ public class RewordInventrySystem : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 rewardInventory[i] = ModifierGenerator.Instance.GenerateRandomModifier();
+                modStatsDisplay.UpdateUI();
             }
 
             Debug.Log("リワードの3枠を更新しました！");
@@ -66,6 +69,7 @@ public class RewordInventrySystem : MonoBehaviour
                 rewardInventory[i] = null;
             }
         }
+        modStatsDisplay.UpdateUI();
     }
     Coroutine _activeLoop;
     void Start()
