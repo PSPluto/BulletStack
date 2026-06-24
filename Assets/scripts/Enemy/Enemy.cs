@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]private AudioClip shotSE;
     [SerializeField]private GameObject dieParticlePrefab;
     [SerializeField]private ShakeSystem shakeSystem;
+    [SerializeField]private SpriteRenderer spriteImage;
 
     //無敵フラグ
     public bool isInvincible = false;
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+        StartCoroutine(DamageFeedback(Color.cadetBlue));
     }
 
     public virtual void AddValue(int addScore , float addXP)
@@ -133,5 +135,18 @@ public class Enemy : MonoBehaviour
             // ゲームオーバーのループ処理
             yield return null;
         }
+    }
+    IEnumerator DamageFeedback(Color color)
+    {
+        shakeSystem.Shake(0.1f,0.5f);
+        spriteImage.color = color;
+        float time = 0.5f;
+        while (time > 0)
+        {
+            spriteImage.color = Color.Lerp(color, Color.white, 1 - (time / 0.1f));
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        spriteImage.color = Color.white;
     }
 }

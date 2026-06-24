@@ -145,7 +145,8 @@ MonoBehaviour:
   shotSE: {fileID: 0}
   dieParticlePrefab: {fileID: 1080897348848481451, guid: 116e52e90a1c7e843a09c013a4717119, type: 3}
   shakeSystem: {fileID: 0}
-  isInvincible: 0
+  spriteImage: {fileID: 4635637527141534759}
+  isInvincible: 1
   contactDamage: 10
   damageCooldown: 1
   acceleration: 2
@@ -246,5 +247,10 @@ PrefabInstance:
 --- !u!4 &3153705776761411581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8742538545776668643, guid: e4aa1acfec987cc46b47446209455977, type: 3}
+  m_PrefabInstance: {fileID: 5951378046435702814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4635637527141534759 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: -7871556540511652807, guid: e4aa1acfec987cc46b47446209455977, type: 3}
   m_PrefabInstance: {fileID: 5951378046435702814}
   m_PrefabAsset: {fileID: 0}

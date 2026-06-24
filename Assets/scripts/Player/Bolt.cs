@@ -8,6 +8,7 @@ public class Bolt : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField]private GameObject hitParticlePrefab;
     [SerializeField]private AudioClip hitSE;
+    [SerializeField]private AudioClip noHitSE;
 
     void Start()
     {
@@ -42,9 +43,16 @@ public class Bolt : MonoBehaviour
         if (enemy == null) return;
 
         enemy.TakeDamage(damage);
-        ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, (transform.rotation));
+        if (enemy.isInvincible)
+        {
+            AudioManager.Instance.Playsound(noHitSE);
+        }
+        else {
         AudioManager.Instance.Playsound(hitSE);
-        
+        ParticleManager.Instance.CreateParticle(hitParticlePrefab, transform.position, (transform.rotation));
+
+        }
+
         Destroy(gameObject);
     }
 }

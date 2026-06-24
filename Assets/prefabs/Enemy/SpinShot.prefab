@@ -181,6 +181,7 @@ MonoBehaviour:
   shotSE: {fileID: 8300000, guid: b8192ef88a6d00548a8ec3a7d9d58b3b, type: 3}
   dieParticlePrefab: {fileID: 1080897348848481451, guid: 116e52e90a1c7e843a09c013a4717119, type: 3}
   shakeSystem: {fileID: 5833981748602568059}
+  spriteImage: {fileID: 1744236320624149909}
   isInvincible: 0
   bulletPrefab: {fileID: 6822836005962780505, guid: 87b442872007c134eab975f34447e5ab, type: 3}
   rotateSpeed: 60
@@ -265,6 +266,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5833981748602568059}
   m_SourcePrefab: {fileID: 7243324766535440047, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}
+--- !u!212 &1744236320624149909 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: -7871556540511652807, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}
+  m_PrefabInstance: {fileID: 789916336951488940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4683477789923816053 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3888481672020999207, guid: 08870a89a3d00344598d1a8a64b7f852, type: 3}

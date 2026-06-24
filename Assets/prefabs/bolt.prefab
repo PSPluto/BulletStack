@@ -109,6 +109,7 @@ MonoBehaviour:
   speed: 0
   hitParticlePrefab: {fileID: 1080897348848481451, guid: bdea1bb5bea9bfc4c83262a55ca09cf9, type: 3}
   hitSE: {fileID: 8300000, guid: 5b2ebf3673e71b149b3e22f082dda222, type: 3}
+  noHitSE: {fileID: 8300000, guid: 64f7002c5ec412e48a674cce19ead283, type: 3}
 --- !u!50 &1226413382014656263
 Rigidbody2D:
   serializedVersion: 5
