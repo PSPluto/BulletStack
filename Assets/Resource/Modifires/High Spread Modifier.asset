@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: High Spread Modifier
   m_EditorClassIdentifier: Assembly-CSharp::SpreadModifier
   chipName: "\u30C8\u30F3\u30CD\u30EA\u30F3\u30B0"
-  description: "\u62E1\u6563\u7BC4\u56F2\u304C15\u5EA6\u4EE5\u4E0A\u306A\u3089\u30C0\u30E1\u30FC\u30B8\u3068\u5F3E\u901F\u3092\u4E0A\u3052\u308B"
-  icon: {fileID: 0}
-  Color: {r: 0, g: 0, b: 0, a: 1}
+  description: "\u62E1\u6563\u7BC4\u56F2\u304C15\u4EE5\u4E0A\u306A\u3089\u3001\u30C0\u30E1\u30FC\u30B8\u3068\u5F3E\u901F\u3092\u5927\u304D\u304F\u4E0A\u6607\u3055\u305B\u308B\u3002"
+  icon: {fileID: 3286163911610860551, guid: 707883d6cd553044893b4ea2122c2d50, type: 3}
+  Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5
   voltageCost: 2
   thresholdAngle: 15
   checkAbove: 1
-  damageAddValue: 5
-  speedAddValue: 2
+  damageAddValue: 15
+  speedAddValue: 4

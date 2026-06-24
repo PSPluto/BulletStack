@@ -33,7 +33,23 @@ public class RewordGUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (ris.rewardInventory[index] != null)
         {
             var addMod = rewordIndex as AddModifier;
-            modDisplay.UpdateUI(rewordIndex.name, rewordIndex.description, rewordIndex.resistance, rewordIndex.voltageCost, addMod?.applicableTo, addMod?.addValue);
+            if (addMod != null)
+            {
+                modDisplay.UpdateUI(rewordIndex.name, rewordIndex.description, rewordIndex.resistance, rewordIndex.voltageCost, addMod?.applicableTo, addMod?.addValue);
+                return;
+
+            }
+            var AppMod = rewordIndex as ApproachHighestModifier;
+            if (AppMod != null)
+            {
+                modDisplay.UpdateUI(rewordIndex.name, rewordIndex.description, rewordIndex.resistance, rewordIndex.voltageCost, AppMod?.applicableTo);
+                return;
+            }
+            else
+            {
+                modDisplay.UpdateUI(rewordIndex.name, rewordIndex.description, rewordIndex.resistance, rewordIndex.voltageCost);
+            }
+
         }
     }
 

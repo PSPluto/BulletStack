@@ -51,11 +51,17 @@ public class MODStatsDisplay : MonoBehaviour
         if (to != null)
         {
             applicableTo.text = $"適用先：{to}";
-            valueText.text = $"加算量：{value}";
         }
         else
         {
             applicableTo.text = "---";
+        }
+        if (value != null)
+        {
+            valueText.text = $"加算量：{value}";
+        }
+        else
+        {
             valueText.text = "---";
         }
         if (thisRect.position.x < 0)

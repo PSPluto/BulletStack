@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Add Modifier
   m_EditorClassIdentifier: Assembly-CSharp::AddModifier
   chipName: "\u52A0\u7B97"
-  description: "\u7279\u5B9A\u306E\u9069\u7528\u5148\u306B\u5024\u3092\u52A0\u7B97\u3059\u308B"
+  description: "\u7279\u5B9A\u306E\u9069\u7528\u5148\u306B\u5024\u3092\u52A0\u7B97\u3059\u308B\u3002"
   icon: {fileID: 3286163911610860551, guid: 10622a7e5c9646845b65fea48af3eb77, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 1

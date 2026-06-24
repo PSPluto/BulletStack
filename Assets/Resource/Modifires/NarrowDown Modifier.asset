@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NarrowDown Modifier
   m_EditorClassIdentifier: Assembly-CSharp::NarrowDownModifier
   chipName: "\u96C6\u4E2D"
-  description: "\u5F3E\u306E\u62E1\u6563\u7BC4\u56F2\u3092\u72ED\u3081\u308B"
+  description: "\u5F3E\u306E\u62E1\u6563\u7BC4\u56F2\u3092\u72ED\u3081\u308B\u3002"
   icon: {fileID: 3286163911610860551, guid: 46a41adb8c8c9934ba1efe1986f6d668, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5

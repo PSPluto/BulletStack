@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5c8a0301a717d47a6b7c45ace2f987, type: 3}
   m_Name: Approach Highest Modifier
   m_EditorClassIdentifier: Assembly-CSharp::ApproachHighestModifier
-  chipName: Lerp
+  chipName: "\u30D5\u30A3\u30FC\u30C9\u30D0\u30C3\u30AF"
   description: "\u5BFE\u8C61\u306E\u5024\u3092\u3001Signal\u5185\u306E\u6700\u3082\u9AD8\u3044\u5024\u306B\u8FD1\u3065\u3051\u308B\u3002"
-  icon: {fileID: 0}
+  icon: {fileID: 3286163911610860551, guid: b11844d204fa6874fa13c9dce0b81fdc, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5
   voltageCost: 3
+  applicableTo: 0

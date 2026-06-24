@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diffusion Modifier
   m_EditorClassIdentifier: Assembly-CSharp::DiffusionModifier
   chipName: "\u62E1\u6563"
-  description: "\u5F3E\u306E\u62E1\u6563\u7BC4\u56F2\u3092\u5E83\u3052\u308B"
+  description: "\u5F3E\u306E\u62E1\u6563\u7BC4\u56F2\u3092\u5E83\u3052\u308B\u3002"
   icon: {fileID: 3286163911610860551, guid: 13f55f039cfe63243a76085179d7cfce, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5

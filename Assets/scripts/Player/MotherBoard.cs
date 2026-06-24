@@ -136,6 +136,7 @@ public class MotherBoard : MonoBehaviour
         circuit.Clear();
         pInventory.playerInventry.Clear();
         equippedInventoryMnager.UpdateList(circuit, InventoryType.Circuit);
+        equippedInventoryMnager.UpdateList(pInventory.playerInventry, InventoryType.Inventory);
     }
     public void InitSeed(bool isReplay)
     {

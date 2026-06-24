@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0c57e3879db0a4f928bddd03e3f04b, type: 3}
   m_Name: Low Spread Modifier 1
   m_EditorClassIdentifier: Assembly-CSharp::SpreadModifier
-  chipName: "\u540D\u524D\u672A\u5B9A"
-  description: "\u62E1\u6563\u7BC4\u56F2\u304C5\u5EA6\u4EE5\u4E0B\u306A\u3089\u30C0\u30E1\u30FC\u30B8\u3068\u5F3E\u901F\u3092\u4E0A\u3052\u308B"
-  icon: {fileID: 0}
-  Color: {r: 0, g: 0, b: 0, a: 1}
+  chipName: "\u7CBE\u5BC6\u5C04\u6483"
+  description: "\u62E1\u6563\u7BC4\u56F2\u304C5\u4EE5\u4E0B\u306A\u3089\u3001\u30C0\u30E1\u30FC\u30B8\u3068\u5F3E\u901F\u3092\u5897\u3084\u3059\u3002"
+  icon: {fileID: 3286163911610860551, guid: 6cfec75aa2bbcf548b2899d7334195cb, type: 3}
+  Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5
   voltageCost: 2
   thresholdAngle: 5
-  checkAbove: 1
+  checkAbove: 0
   damageAddValue: 5
   speedAddValue: 2

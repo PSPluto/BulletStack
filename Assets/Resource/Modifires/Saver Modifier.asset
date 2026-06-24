@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Saver Modifier
   m_EditorClassIdentifier: Assembly-CSharp::SaverModifier
   chipName: "\u7701\u96FB\u529B"
-  description: "\u30E2\u30C7\u30A3\u30D5\u30A1\u30A4\u30A2\u306E\u9069\u7528\u500D\u7387\u3092\u4E0B\u3052\u3001\u5927\u91CF\u306E\u96FB\u5727\u3092\u5F97\u308B"
+  description: "\u30E2\u30C7\u30A3\u30D5\u30A1\u30A4\u30A2\u306E\u9069\u7528\u500D\u7387\u3092\u4E0B\u3052\u3001\u5927\u91CF\u306E\u96FB\u5727\u3092\u5F97\u308B\u3002"
   icon: {fileID: 3286163911610860551, guid: 314c652a31816fc4cac1793648a55ec6, type: 3}
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5

@@ -15,6 +15,7 @@ public class ModifierGenerator : MonoBehaviour
         Modifier instance = Instantiate(seed);
 
         if (instance is AddModifier addMod) addMod.RollRandomStats();
+        if (instance is ApproachHighestModifier mulMod) mulMod.RollRandomStats();
 
         return instance;
     }

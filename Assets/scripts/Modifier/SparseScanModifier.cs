@@ -7,6 +7,6 @@ public class SparseScanModifier : Modifier
     public override void Process(Signal signal)
     {
         signal.skipProbability += 15f * signal.modMultiplier;
-        signal.modMultiplier += 0.6f * signal.modMultiplier;
+        signal.modMultiplier += 0.5f * signal.modMultiplier;
     }
 }
