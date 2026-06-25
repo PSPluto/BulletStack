@@ -144,6 +144,7 @@ public class PhaseManager : MonoBehaviour
 
     public void PhaseEndCheck()
     {
+        Debug.Log("フェーズ終了チェック");
         int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         if ((enemyCount <= 0) && isSpawning == false)

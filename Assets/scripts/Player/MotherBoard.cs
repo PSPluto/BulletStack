@@ -316,7 +316,12 @@ public class MotherBoard : MonoBehaviour
 
     public void listMovement(int thisIndex = -1, bool isContent = false, Image thisImg = null)
     {
-        if (lastIndex == -1)
+        if (thisIndex == -1)
+        {
+            lastIndex = -1; if (lastIndex == -1)
+            return;
+        }
+            if (lastIndex == -1)
         {
             //一回目
             if (isContent == false)

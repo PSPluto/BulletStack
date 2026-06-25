@@ -50,6 +50,10 @@ public class StateManager : MonoBehaviour
             default: break;
         }
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     IEnumerator TitleLoop()
     {
         resultDisplay.transform.localScale = Vector3.zero;

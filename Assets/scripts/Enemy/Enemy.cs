@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Initialize();
-        //shakeSystem = GetComponentInChildren<ShakeSystem>();
     }
     private void Update()
     {
@@ -36,6 +35,7 @@ public class Enemy : MonoBehaviour
     public void Initialize()
     {
         player = Object.FindAnyObjectByType<MotherBoard>();
+        shakeSystem = FindAnyObjectByType<ShakeSystem>();
         rb = GetComponent<Rigidbody2D>();
         currentHP = maxHP;
     }

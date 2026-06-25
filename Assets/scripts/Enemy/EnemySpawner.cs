@@ -6,10 +6,15 @@ using Unity.VisualScripting;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] enemys;
+    [SerializeField] GameObject shieldPrefab;
 
     public void SpawnEnemy(GameObject prefab,int xPos)
     {
         GameObject obj = Instantiate(prefab, new Vector3(xPos, 10, 0), Quaternion.identity);
+        if (RNGManager.Gameplay.Next(0,6)== 0)
+        {
+            Instantiate(shieldPrefab, obj.transform);
+        }
     }
     Coroutine _activeLoop;
     void Start()
