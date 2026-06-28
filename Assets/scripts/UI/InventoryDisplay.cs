@@ -117,6 +117,26 @@ public class InventoryDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnt
     {
         if (!isContent) { return;}
             modStatsDisplay.UpdateUI(modData.name, modData.description, modData.resistance, modData.voltageCost, addModData?.applicableTo, addModData?.addValue);
+        {
+            var addMod = modData as AddModifier;
+            if (addMod != null)
+            {
+                modStatsDisplay.UpdateUI(modData.name, modData.description, modData.resistance, modData.voltageCost, addMod?.applicableTo, addMod?.addValue);
+                return;
+
+            }
+            var AppMod = modData as ApproachHighestModifier;
+            if (AppMod != null)
+            {
+                modStatsDisplay.UpdateUI(modData.name, modData.description, modData.resistance, modData.voltageCost, AppMod?.applicableTo);
+                return;
+            }
+            else
+            {
+                modStatsDisplay.UpdateUI(modData.name, modData.description, modData.resistance, modData.voltageCost);
+            }
+
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

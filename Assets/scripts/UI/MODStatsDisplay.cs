@@ -47,7 +47,7 @@ public class MODStatsDisplay : MonoBehaviour
         rectTransform.localScale = new Vector3(1, 1, 1);
         descText.text = desc;
         resistanceText.text = $"抵抗：{resistance}";
-        costText.text = $"使用電力：{cost}";
+        costText.text = $"電圧低下：{cost}";
         if (to != null)
         {
             applicableTo.text = $"適用先：{to}";

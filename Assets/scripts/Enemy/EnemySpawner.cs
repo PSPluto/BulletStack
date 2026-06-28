@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy(GameObject prefab,int xPos)
     {
         GameObject obj = Instantiate(prefab, new Vector3(xPos, 10, 0), Quaternion.identity);
-        if (RNGManager.Gameplay.Next(0,6)== 0)
+        if (RNGManager.Gameplay.Next(0, 6) == 0)
         {
             Instantiate(shieldPrefab, obj.transform);
         }

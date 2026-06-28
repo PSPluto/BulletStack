@@ -145,9 +145,19 @@ public class PhaseManager : MonoBehaviour
     public void PhaseEndCheck()
     {
         Debug.Log("フェーズ終了チェック");
-        int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        List<GameObject> enemyCount = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        int skipEnemyCount = 0;
+        foreach (GameObject checkEnemy in enemyCount)
+        {
+            if (checkEnemy.GetComponent<Shield>() != null)
+            {
+                skipEnemyCount++;
+            }
+        }
+        int resultEnemyCount = enemyCount.Count - skipEnemyCount;
 
-        if ((enemyCount <= 0) && isSpawning == false)
+
+        if ((resultEnemyCount <= 0) && isSpawning == false)
         {
             if (player.currentLevel != lastLv)
             {
