@@ -5,7 +5,7 @@ public class ConverterModifier : Modifier
 {
     public override void Process(Signal signal)
     {
-        float n = signal.skipProbability / 3f;
+        float n = signal.skipProbability;
         signal.skipProbability = 0f;
 
         // 減算対象候補のリスト（値がN以上のステータスのみ）

@@ -215,9 +215,12 @@ public class MotherBoard : MonoBehaviour
             {
                 continue;
             }
-            if (s.skipProbability > Random.Range(0f, 100f))
+            if (circuitSnapshot[i].shouldForce == false)
             {
-                continue;
+                if (s.skipProbability > Random.Range(0f, 100f))
+                {
+                    continue;
+                }
             }
 
             TimeToFire += (circuitSnapshot[i].resistance / 5f)/s.voltage;

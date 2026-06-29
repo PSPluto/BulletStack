@@ -18,3 +18,4 @@ MonoBehaviour:
   Color: {r: 0.47058824, g: 0.5647059, b: 0.6117647, a: 1}
   resistance: 0.5
   voltageCost: 2
+  shouldForce: 1

@@ -13,6 +13,7 @@ public abstract class Modifier : ScriptableObject
     [Header("Œø‰Ê‚Ìİ’è")]
     public float resistance = 0.5f;
     public float voltageCost = 2f;
+    public bool shouldForce = false;
 
     public abstract void Process(Signal signal);
 }
