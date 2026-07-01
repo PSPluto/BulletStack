@@ -262,7 +262,6 @@ public class MotherBoard : MonoBehaviour
             boltScript.damage = resultBaseDamage;
             boltScript.speed = resultBulletSpeed;
         }
-        _audioSource.pitch = 1f + (float)RNGManager.Player.NextDouble() * 0.2f - 0.1f;
         _audioSource.PlayOneShot(shotSound);
     }
     private void SetFinalResults(Signal s)
