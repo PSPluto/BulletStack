@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField]private AudioSource audioSource;
+    [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioClip BGM;
 
     private HashSet<AudioClip> audioCheck = new();
@@ -18,6 +19,7 @@ public class AudioManager : MonoBehaviour
     }
     public void Playsound(AudioClip clip)
     {
+        audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
         if (lastFrameCount !=Time.frameCount) {
             audioCheck.Clear();
             lastFrameCount = Time.frameCount;
@@ -33,10 +35,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBGM(AudioClip BGMClip)
     {
-        if(audioSource.isPlaying == false)
+        if(bgmSource.isPlaying == false)
         {
-            audioSource.clip = BGMClip;
-            audioSource.Play();
+            bgmSource.clip = BGMClip;
+            bgmSource.Play();
         }
     }
     // ‚¢‚Á‚½‚ñ‚±‚±‚ÅBGM Update
