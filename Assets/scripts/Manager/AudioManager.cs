@@ -5,7 +5,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
+
     [SerializeField]private AudioSource audioSource;
+    [SerializeField] private AudioClip BGM;
+
     private HashSet<AudioClip> audioCheck = new();
     private int lastFrameCount = -1;
 
@@ -26,5 +29,19 @@ public class AudioManager : MonoBehaviour
         }
         audioSource.PlayOneShot(clip);
         audioCheck.Add(clip);
+    }
+
+    public void PlayBGM(AudioClip BGMClip)
+    {
+        if(audioSource.isPlaying == false)
+        {
+            audioSource.clip = BGMClip;
+            audioSource.Play();
+        }
+    }
+    // ‚¢‚Á‚½‚ñ‚±‚±‚ÅBGM Update
+    private void Update()
+    {
+        PlayBGM(BGM);
     }
 }
